@@ -23,7 +23,7 @@ app.use(
 )
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../src/index.html'))
+  res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 
 /* eslint-disable no-console */
@@ -34,4 +34,4 @@ app.listen(port, err => {
     console.log(`Starting React application on port${port}`)
     open(`http://localhost:${port}`)
   }
-})<Paste>
+})

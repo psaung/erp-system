@@ -7,7 +7,7 @@ export default {
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
     'webpack-hot-middleware/client', // note that it reloads the page if hot module reloading fails.
-    './src/js/index',
+    './public/js/app',
   ],
   watchOptions: {
     aggregateTimeout: 300,
@@ -15,12 +15,12 @@ export default {
   },
   output: {
     // Note: Physical files are only output by the production build task `npm run build`.
-    path: path.join(__dirname, '/dist'),
-    publicPath: '/',
+    path: path.join(__dirname, '../dist'),
+    publicPath: '../',
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: './src',
+    contentBase: './public',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -38,7 +38,7 @@ export default {
       {
         test: /\.js$/,
         exclude: [/node_modules/],
-        include: [path.join(__dirname, 'src'), path.join(__dirname, '/')],
+        include: [path.join(__dirname, 'public'), path.join(__dirname, '/')],
         use: ['babel-loader'],
       },
       { test: /\.css?$/, use: ['style-loader', 'css-loader'] },
