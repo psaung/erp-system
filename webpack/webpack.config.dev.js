@@ -7,7 +7,7 @@ export default {
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
     'webpack-hot-middleware/client', // note that it reloads the page if hot module reloading fails.
-    './public/js/app',
+    './public/js/index',
   ],
   watchOptions: {
     aggregateTimeout: 300,
@@ -42,6 +42,7 @@ export default {
         use: ['babel-loader'],
       },
       { test: /\.css?$/, use: ['style-loader', 'css-loader'] },
+      { test: /\.scss?$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: 'file-loader' },
     ],
   },

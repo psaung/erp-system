@@ -11,9 +11,9 @@
     "start-app": "node_modules/.bin/babel-node webpack/srcServer.js",
     "test": "jest src/js/__test__/**/*.spec.js",
     "test:watch": "npm run test -- --watch",
-		"build": "node_modules/.bin/babel-node webpack/build.js",
-		"lint": "node_modules/.bin/esw webpack src tools",
-		"lint:watch": "npm run lint -- --watch"
+    "build": "node_modules/.bin/babel-node webpack/build.js",
+    "lint": "node_modules/.bin/esw webpack src tools",
+    "lint:watch": "npm run lint -- --watch"
   },
   "devDependencies": {
     "axios": "^0.16.2",
@@ -61,5 +61,8 @@
     "webpack-dashboard": "^0.4.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2"
+  },
+  "dependencies": {
+    "sass-loader": "^6.0.6"
   }
 }
