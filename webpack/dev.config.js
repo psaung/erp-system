@@ -7,7 +7,7 @@ export default {
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
     'webpack-hot-middleware/client', // note that it reloads the page if hot module reloading fails.
-    './public/js/index',
+    './src/js/index',
   ],
   watchOptions: {
     aggregateTimeout: 300,
@@ -20,7 +20,7 @@ export default {
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: './public',
+    contentBase: './src',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -36,9 +36,9 @@ export default {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js?$/,
         exclude: [/node_modules/],
-        include: [path.join(__dirname, 'public'), path.join(__dirname, '/')],
+        include: [path.join(__dirname, '../src'), path.join(__dirname, '../')],
         use: ['babel-loader'],
       },
       { test: /\.css?$/, use: ['style-loader', 'css-loader'] },

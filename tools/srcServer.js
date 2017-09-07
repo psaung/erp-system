@@ -5,7 +5,7 @@ import open from 'open'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 
-import config from './webpack.config.dev'
+import config from './../webpack/dev.config'
 
 const port = 8080
 const app = express()
@@ -23,7 +23,7 @@ app.use(
 )
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'))
+  res.sendFile(path.join(__dirname, '../src/index.html'))
 })
 
 /* eslint-disable no-console */
