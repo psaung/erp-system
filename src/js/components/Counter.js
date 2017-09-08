@@ -23,9 +23,10 @@ class Counter extends Component {
     return(
       <div>
         <button onClick={onIncrementAsync}>
-          Increment after 1 second
+          Testing Ajax Api Calls
         </button>
-        {' '}
+        {value}
+        { /*
         <button onClick={onIncrement}>
           Increment
         </button>
@@ -41,6 +42,7 @@ class Counter extends Component {
         <div>
           Clicked: {value} times
         </div>
+        */ }
       </div>
     )
   }
