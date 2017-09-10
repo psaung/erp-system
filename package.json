@@ -17,8 +17,11 @@
   "license": "MIT",
   "jest": {},
   "dependencies": {
+    "compass": "^0.1.1",
+    "compass-mixins": "^0.12.10",
     "express": "^4.15.4",
     "isomorphic-fetch": "^2.2.1",
+    "node-sass": "^4.5.3",
     "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -27,7 +30,8 @@
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "url-loader": "^0.5.9"
   },
   "devDependencies": {
     "babel": "^6.23.0",

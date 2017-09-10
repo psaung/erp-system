@@ -14,26 +14,26 @@ export default class Login extends Component {
   render() {
     let username, password
     return(
-      <div className="auth-form-control">
-        <h3 className="auth-form-control__heading">Sign In</h3>
+      <div className="auth-form">
+        <h3 className="auth-form__heading">Sign In</h3>
         <form>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" className="auth-form__label">Username</label>
             <input
               type="text"
               name="username"
-              className="auth-form-control__input"
+              className="auth-form__input"
               ref={node => {
                 username = node 
               }}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="auth-form__label">Password</label>
             <input
               type="password"
               name="password"
-              className="auth-form-control__input"
+              className="auth-form__input"
               ref={node => {
                 password= node 
               }}
@@ -41,8 +41,8 @@ export default class Login extends Component {
           </div>
           <div className="form-group">
           </div>
-          <button onClick={this.login} className="auth-form-control__submit">Login</button>
-          <input type="reset" value="Cancel" className="auth-form-control__reset"/>
+          <button onClick={this.login} className="btn btn--success btn--rounded">Login</button>
+          <input type="reset" value="Cancel" className="btn btn--warning btn--rounded"/>
         </form>
       </div>
     )

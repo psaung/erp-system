@@ -1,0 +1,58 @@
+// ====================================================================
+// Heading          : Media Queries
+// Descriptions     : Style for individual media query break points.
+// Always create mobile first approach. Organize all of the media query
+// in a single file for better maintainence approach.
+// ====================================================================
+
+@include respond-to-max-width(420px) {
+
+    .auth-form {
+        padding: 30px 0px;
+    }
+    .user{
+        @include e(select){
+            width:90%;
+            margin-top: 5px;
+        }
+    }
+}
+
+@include respond-to-min-width( $brkpoint--md ) {
+
+    .auth-form {
+        & > div {
+            margin-top: 30px;
+        }
+        @include e( submit ) {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+    }
+
+    .l-auth {
+        @include e( wrapper ) {
+            margin-top: 100px;    
+        }
+    }
+}
+
+@include respond-to-max-width( $brkpoint--md - 1) {
+
+    
+    .auth-form {
+        line-height: em( 30px );
+        input {
+            width: 100%;
+            padding: 15px 10px;
+        }
+        @include e( submit ) {
+            margin-bottom: 10px;
+        }
+    }
+    
+}
+
+
+

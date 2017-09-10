@@ -1,0 +1,15 @@
+// ====================================================================
+// Heading          : Import.scss
+// Descriptions     :  All of the partial files in this folder will be imported to
+// this file will be imported in main.scss . We will not
+// use sass globbing because it can't control the order of our sass file
+// and it will import all of the file via alphabetical orders.
+// ====================================================================        
+
+@import "header";
+
+@import "content";
+
+@import "footer";
+
+@import "userauth";

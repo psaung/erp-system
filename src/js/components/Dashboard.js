@@ -23,7 +23,7 @@ class Dashboard extends Component {
     const { store } = this.props
     const action = type => store.dispatch({type})
     return (
-      <div className="app-bg">
+      <div className="l-auth">
         <div className="menu">
           <button onClick={() => this.showViews('login')}>Sign In</button>
           <button onClick={() => this.showViews('register')}>Sign Up</button>
@@ -38,7 +38,7 @@ class Dashboard extends Component {
             onIncrementIfOdd={() => action('INCREMENT_IF_ODD')} />
         }
         {this.state.views === 'login' || this.state.views === 'register' ? 
-        <div className="auth-wrapper">
+        <div className="flex-centered-container">
           { this.state.views === 'login' &&
             <Login />
           }

@@ -1,0 +1,22 @@
+// ====================================================================
+// Heading         : Sass Functions
+// Descriptions    :  Reusable sass functions are implemented here . We seperate sass functions
+// and mixins in each own specific file . Functions must be imported before the Mixins file.
+// ====================================================================
+
+// fallback support for rems
+@function calculateRem( $size ) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+// Calculate em values
+@function em($target, $context: $base-font-size ) {
+    @return ($target / $context) * 1em;
+}
+
+// Set the "context" width for the grid
+@function g-context($g-col-width, $g-col-count ,$g-gutter-width) {
+  $g-context: ($g-col-width * $g-col-count) + ($g-gutter-width * ($g-col-count - 1));
+  @return $g-context;
+}

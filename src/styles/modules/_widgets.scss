@@ -1,0 +1,40 @@
+// ====================================================================
+// Heading          : Widgets
+// Descriptions     : All of the widgets css classes are implemented here.
+// ====================================================================
+
+.mail-widget {
+    width: 100%;
+    position: relative;
+    display: table;
+
+    border-bottom: 1px solid #ececec;
+    cursor: pointer;
+    padding: 15px 0px;
+    @include e(avatar) {
+        display: table-cell;
+        width: em(48px);
+        height: em(48px);
+
+        background: #ececec;
+        text-align: center;
+        vertical-align: middle;
+        @include border-radius(em(24px));
+        i {            
+            line-height: 20px;
+        }
+    }
+    @include e(body) {
+        padding-left: 15px;
+        h4 {
+            margin-bottom: 5px;
+        }
+        display: table-cell;
+    }
+    @include e(accessory) {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        color: $info;
+    }
+}

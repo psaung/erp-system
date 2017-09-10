@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
-import './../styles/main.css'
+import './../styles/main.scss'
 import reducer from './reducers/counter'
 import Dashboard from './components/Dashboard'
 import rootSaga from './sagas/counter-saga'

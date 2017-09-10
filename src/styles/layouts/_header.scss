@@ -1,0 +1,23 @@
+// ====================================================================
+// Heading         : Header
+// Descriptions    :  Styles for header region. All of the layouts rules
+// must be prefixed with l-.
+// ====================================================================
+
+.l-header {
+
+}
+
+.l-logo {
+    float: left;
+    display: table;
+    padding: 12px 20px;
+    
+    width: 120px;
+    height : 60px;
+    
+    a {
+        display: table-cell;        
+    }
+}
+

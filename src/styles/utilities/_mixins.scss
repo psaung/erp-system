@@ -1,0 +1,346 @@
+// ====================================================================
+// Heading          : Mixins
+// Descriptions     : Sass Mixins are very useful for every front end developer . It makes your 
+// code DRY. They will give you nice supportation when you are creating your own themes.
+// They can be included from your base , layouts and other files . They should be imported 
+// before your predefined style sheet which will use your sass mixins.
+// ====================================================================
+
+// BEM selectors
+
+@mixin e($element) {
+
+  &__#{$element} {
+      // & {
+        @content;
+      }
+    }
+
+    @mixin m($modifier) {
+
+      &--#{$modifier} {
+    // & {
+      @content;
+    }
+  }    
+
+// media query
+@mixin respond-to($media) {
+  @if $media == handhelds {
+
+    @media only screen and (max-width: 320px) { @content; }
+  }
+
+  @else if $media == xs {
+    @media only screen and (max-width: 768px) { @content; }
+  }
+
+  @else if $media == medium-screens {
+    @media only screen and (min-width: 321px) and (max-width: 1024px) { @content; }
+  }
+
+  @else if $media == wide-screens {
+    @media only screen and (min-width: 1024px) { @content; }
+  }
+
+  @else if $media == handhelds-ls-pt {
+    @media only screen and (min-width: 200px) and (max-width: 480px) { @content; }
+  }
+
+  @else if $media == tablet-bp-fst {
+    @media only screen and (min-width: 481px) and (max-width: 650px) { @content; }
+  }
+
+  @else if $media == tablet-bp-snd {
+   @media only screen and (min-width: 651px) and (max-width: 1024px) { @content; }
+ }
+}
+
+@mixin respond-to-max-width($width) {
+
+  @media only screen and(max-width: $width) {
+    @content;
+  }
+}
+
+@mixin respond-to-min-width($width) {
+
+  @media only screen and(min-width: $width) {
+    @content;
+  }
+}
+
+@mixin respond-to-min-max($minwidth,$maxwidth) {
+
+  @media only screen and(min-width: $minwidth) and (max-width: $maxwidth){
+    @content;
+  } 
+}
+
+
+@mixin rem-size ( $size ) {
+  font-size: $size;
+    font-size: calculateRem($size); // Will be Overriden if browser supports rems
+  }
+// usage p { @include rem-size(14px) ; }
+
+@mixin user-select($type) {
+  -webkit-user-select: $type;  /* Chrome all / Safari all */
+  -moz-user-select: $type;     /* Firefox all */
+  -ms-user-select: $type;      /* IE 10+ */
+  user-select: $type;
+}
+// bullet proof svg background images
+$image-path: '../img' !default;
+$fallback-extension: 'png' !default;
+$retina-suffix: '@2x';
+
+@mixin retina-bgimage($name, $size:false){
+  background-image: url(#{$image-path}/#{$name}.svg);
+
+  @if($size) {
+    background-size: $size;
+  }
+
+  .no-svg & {
+    background-image: url(#{$image-path}/#{$name}.#{$fallback-extension});
+
+    @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+      background-image: url(#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension});
+    }
+  }
+}
+
+
+// Keyframes
+@mixin keyframe-animation ($animationname) {
+
+  @-webkit-keyframes #{$animationname} {
+    @content;
+  }
+
+  @-moz-keyframes #{$animationname} {
+    @content;
+  }
+
+  @-ms-keyframes #{$animationname} {
+    @content;
+  }
+
+  @-o-keyframes #{$animationname} {
+    @content;
+  }
+
+  @keyframes #{$animationname} {
+    @content;
+  }
+}
+
+// Animations
+@mixin animation ( $str ) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -o-animation: #{$str};
+  -ms-animation: #{$str};
+  animation: #{$str};
+}
+
+
+@mixin circle($size) {
+  width: $size+px;
+  height: $size+px;
+  border-radius: ($size/2)+px;
+  -moz-border-radius: ($size/2)+px;
+  -webkit-border-radius: ($size/2)+px;
+}
+
+@mixin pseudo-element ($el,$el-w: null, $el-h: null){
+
+  @if $el == "before" or $el == "after" {
+    &:#{$el} {
+      @extend %pseudos;
+      width: $el-w;
+      height: $el-h;
+      @content;
+    }
+  }
+
+  @else {
+    @error "'#{$el}' is not a valid pseudo-element";
+  }
+}
+
+@mixin background-size($size) {
+  background-size: $size;
+  -o-background-size: $size;
+  -moz-background-size: $size;
+  -webkit-background-size: $size;
+}
+
+@mixin appearance($type) {
+  appearance: $type;
+  -o-appearance: $type;
+  -moz-appearance: $type;
+  -webkit-appearance: $type;
+}
+
+@mixin flex($size) {
+ -webkit-flex: $size; /* Safari 6.1+ */
+ -ms-flex: $size; /* IE 10 */ 
+ flex: $size;
+}
+
+@mixin calc($num, $num2) {
+  /* Firefox */
+  width: -moz-calc(#{$num} - #{$num2});
+  /* WebKit */
+  width: -webkit-calc(#{$num} - #{$num2});
+  /* Opera */
+  width: -o-calc(#{$num} - #{$num2});
+  /* Standard */
+  width: calc(#{$num} - #{$num2});
+}
+
+@mixin mq($break) {
+  @if $break == "xs" {
+    @media (min-width: $brkpoint--xs) and (max-width: $brkpoint--sm) {
+      @content;
+    }  
+  }
+  @else if $break == "small" {
+    @media (min-width: $brkpoint--sm) and (max-width: $brkpoint--md) {
+      @content;
+    }
+  }
+  @else if $break == "medium" {
+    @media (min-width: $brkpoint--md + 1) {
+      @content;
+    }
+  }
+  @else if $break == "large" {
+    @media (min-width: $brkpoint--lg) {
+      @content;
+    }
+  }
+  @else {
+    @error "No value could be retrieved for `#{$break}`. "
+  }
+}
+
+// Adjacent sibling margins
+@mixin doubly($margin: 1em) {
+  & + & {
+   margin-left: $margin;
+   @content;
+ }
+}
+
+// Grid columns
+// @mixin g-columns {
+//   $context: g-context($g-col-width, $g-col-count ,$g-gutter-width) !global;
+//   @for $i from 1 through $g-col-count {    
+//     $target: ($g-col-width * $i) + ($g-gutter-width * ($i - 1));
+//     // Generate and output the column modifier classes 
+//     &--#{$i} {
+//       width: percentage($target / $context);
+//     }
+//   }
+// }
+
+@mixin flex($params) {
+  -webkit-flex: $params;
+  -ms-flex: $params;
+  -moz-flex: $params;
+  flex: $params;
+}
+
+@mixin flex-grow($parms) {
+  -webkit-flex-grow: $params;
+  flex-grow: $params;
+}
+
+@mixin flex-flow($params) {
+  -webkit-flex-flow: $params;
+  -moz-flex-flow: $params;
+  -ms-flex-flow: $params;
+  flex-flow: $params;
+}
+
+@mixin flex-direction($params) {
+  -moz-flex-direction: $params;
+  -webkit-flex-direction: $params;
+  -ms-flex-direction: $params;
+  flex-direction: $params;
+}
+
+@mixin flex-wrap($params) {
+  -webkit-flex-wrap: $params;
+  -ms-flex-wrap: $params;
+  -moz-flex-wrap: $params;
+  flex-wrap: $params;
+}
+
+@mixin flex-basis($params) {
+  -webkit-flex-basis: $params;
+  -ms-flex-preferred-size: $params; // fix the ie10 height bug
+  -ms-flex-basis: $params;
+  -moz-flex-basis: $params; 
+  flex-basis: $params;
+}
+
+@mixin flex-columns {
+  $context: 1/$g-col-count;
+  @for $i from 1 through $g-col-count {
+    &--#{$i} {
+      @include flex-basis(percentage($context*$i));      
+      max-width: percentage($context * $i);
+    }
+  }
+}
+
+@mixin g-columns {
+  $context: 1 / $g-col-count;
+  @for $i from 1 through $g-col-count {
+    &--#{$i} {
+      float: left;
+      width: percentage($context * $i) ;
+    }
+  }
+}
+
+@mixin g-columns-push {
+  $push-context: 1 / $g-col-count;
+  @for $i from 1 through $g-col-count {
+    &--#{$i} {
+      left: percentage($push-context * $i) ;
+    }
+  }
+}
+
+// prograss bars
+@mixin progress($width, $color){
+  @include pseudo-element(before,$width,100%) {    
+    background: $color;
+  }
+}
+
+// Grid columns with push state
+// @mixin g-columns-push {
+//     $push-context:  g-context($g-col-width, $g-col-count ,$g-gutter-width) !global;
+//   @for $i from 1 through $g-col-count {
+//     $target: ($g-col-width * $i) + ($g-gutter-width * ($i));
+//     // Generate and output the column modifier classes 
+//     &--#{$i} {
+//       left: percentage($target / $push-context);
+//     }
+//   }
+// }
+
+
+@mixin transform-o ( $params ) {
+  transform-origin: $params;
+  -webkit-transform-origin: $params;
+  -moz-transform-origin: $params;
+  -ms-transform-origin: $params;
+}
+

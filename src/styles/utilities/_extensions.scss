@@ -1,0 +1,77 @@
+// ====================================================================
+// Heading          : Extensions
+// Descriptions     : Don't repeat Yourself(DRY) and should organize your reusable  code 
+// style snippet in this file and extend from the other classes and ids.
+// This file is intended to use for multi object.
+// ====================================================================
+
+ %font-base {    
+
+    font-family     : $base-font;    
+    color           : $base-font-color;
+
+    // Better Font Rendering
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+%sprite-frame {
+    display: inline-block;  
+    overflow: hidden;   
+}
+
+
+%centered {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+// clearfix by nicolas gallagher
+%clearfix {
+    *zoom: 1;
+
+    &:before, 
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+
+    &:after {
+        clear: both;
+    }
+}
+
+%visuallyhidden {
+    position: absolute;
+    
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+
+    margin: -1px; 
+    padding: 0;
+    
+    clip: rect( 0 , 0 , 0, 0 );
+
+    &.focusable:active,
+    &.focusable:focus {
+        position: static;
+
+        width: auto;
+        height: auto;
+        overflow: visible;
+        
+        clip: auto;
+        margin: 0;
+    }
+}
+
+%pseudos {
+    position: absolute;
+    display: block;
+
+    content: '';
+}

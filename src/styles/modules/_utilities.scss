@@ -1,0 +1,431 @@
+// ====================================================================
+// Heading          : Utilities
+// Descriptions     : All of the utilities css classes are implemented here.
+// ====================================================================
+
+
+.responsive-img {
+    max-width: 100%;
+    min-width: 100%;
+    width: auto;
+    margin: auto;
+    height: auto;
+}
+
+.full-width {
+    // width: 100%;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+/*
+use for table component
+*/
+.pageBox{
+    cursor: pointer;
+    display: table-cell;
+    width: $pag-box-width;
+    height: $pag-box-height;
+    margin: $pag-box-margin;
+    background: #fff;
+    border:1px solid #ececec;
+    font-size: em($pag-box-font-size);
+    text-align: center;
+    line-height: em($pag-box-height+($pag-box-margin*2));
+    transition:all .5s;
+    &:hover{
+        font-weight:bold;
+        background: $primary;
+        color: white;
+    }
+}
+
+//use for info text
+.info-text {
+    color: $info-text-color;
+    font-size: $info-text-size;
+    font-style: $info-text-style;
+}
+
+.u-threshold {
+    position: absolute;
+    bottom: -18px;
+    left: 45%;
+    min-width: 60px;
+    text-align: center;
+    color: white;
+    background: $warning;
+    &.exceed {
+        background: $danger;
+    }
+}
+.offline-user {
+    color: gray;
+}
+
+.online-user {
+    color: #39D639;
+}
+
+.col {
+    width: 16.66667%;
+    @include e(actionHolder) {
+        margin: 0 auto;
+        overflow: hidden;
+        border-right: 1px solid #ececec;
+        @include e(actionItem) {
+            float: left;
+            width: $third;
+            padding: 3px;
+        }
+        @include e(actionButton) {
+            float: left;
+            width: $half;
+            padding: 5px;
+        }
+        & > * {
+            height: $row-height;
+        }
+    }
+    @include e(title) {
+        margin: 0 auto;
+        overflow: hidden;
+        @include e(text) {
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            @include e(order) {
+                width: $title-order-chevron-container-width;
+                height: $title-order-chevron-container-height;
+                position: absolute;
+                cursor: pointer;
+                    right: -($title-order-chevron-container-width+3); // 3 intend for gap
+                    top: 0px;
+                    background: transparent;
+                    @include pseudo-element(before, 100%, 50%) {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background: #ccc;
+                        background-size: $full $half;
+                        background-position: 0 100%;
+                    }
+                    @include pseudo-element(after, 100%, 50%) {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        background: #ccc;
+                        background-size: $full $half;
+                        background-position: 0 0;
+                    }
+                }
+                @include m(toggle) {
+                    @extend .col__title__text__order;
+                    @include pseudo-element(before) {
+                        @extend .col__title__text__order:before;
+                        background: #ccc;
+                        background-size: $full $half;
+                        background-position: 0 100%;
+                    }
+                    @include pseudo-element(after) {
+                        @extend .col__title__text__order:after;
+                        background: #ccc;
+                        background-size: $full $half;
+                        background-position: 0 0;
+                    }
+                }
+            }
+        }
+        &:first-child {
+
+        }
+        &:nth-child(2) {
+
+        }
+        &:last-child {
+
+        }
+    }
+
+
+//loader animation keyframes
+@keyframes ball-bounce {
+  0%{ 
+    top: 30%;
+    left: -10%;
+} 
+17% {  /* first bar */
+    top: 88%;
+    left: 8%;
+} 
+25%{
+    top: 70%;
+    left: 17%;
+} 
+33% { /* second bar */
+    top: 88%;
+    left: 25%;
+} 
+42% {
+    top: 70%;
+    left: 34%;
+} 
+50% { /* third bar */
+    top: 88%;
+    left: 43%;
+} 
+58%{
+    top: 80%;
+    left: 52%;
+} 
+67% { /* fourth bar */
+    top: 88%;
+    left: 63%;
+} 
+75% {
+    top: 80%;
+    left: 72%;
+} 
+83% {
+    top: 88%;
+    left: 80%;
+} 
+91% {
+    top: 90%;
+    left: 90%;
+} 
+100% {
+    top: 120%;
+    left: 110%;
+}
+
+}
+
+@-webkit-keyframes ball-bounce {
+  0%{ 
+    top: 30%;
+    left: -10%;
+} 
+17% {  /* first bar */
+    top: 88%;
+    left: 8%;
+} 
+25%{
+    top: 70%;
+    left: 17%;
+} 
+33% { /* second bar */
+    top: 88%;
+    left: 25%;
+} 
+42% {
+    top: 70%;
+    left: 34%;
+} 
+50% { /* third bar */
+    top: 88%;
+    left: 43%;
+} 
+58%{
+    top: 80%;
+    left: 52%;
+} 
+67% { /* fourth bar */
+    top: 88%;
+    left: 63%;
+} 
+75% {
+    top: 80%;
+    left: 72%;
+} 
+83% {
+    top: 88%;
+    left: 80%;
+} 
+91% {
+    top: 90%;
+    left: 90%;
+} 
+100% {
+    top: 120%;
+    left: 110%;
+}
+
+}
+@-webkit-keyframes sk-stretchdelay {
+  0% { 
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+16%{
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}  
+20% {
+    transform: scaleY(0.7);
+    -webkit-transform: scaleY(0.7);
+}
+23%{
+    transform: scaleY(0.8);
+    -webkit-transform: scaleY(0.8);
+}
+28%{
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+100%{
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+}
+
+@keyframes sk-stretchdelay {
+  0% { 
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+16%{
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}  
+20% {
+    transform: scaleY(0.7);
+    -webkit-transform: scaleY(0.7);
+}
+23%{
+    transform: scaleY(0.8);
+    -webkit-transform: scaleY(0.8);
+}
+28%{
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+100%{
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+}
+
+@keyframes bar-animate {
+  0% { 
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+60%{
+    transform: scaleY(0.7);
+    -webkit-transform: scaleY(0.7);
+}
+100%{
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+}
+
+@-webkit-keyframes ar-stretch {
+  0% {
+   width: 40%; 
+   opacity: 0;
+}  
+20% {
+  width: 40%;
+}
+70% { 
+  width: 100%;
+}
+100% { 
+  width: 100%; 
+  opacity: 1;
+}
+}
+
+@keyframes ar-stretch {
+  0% {
+   width: 40%; 
+   opacity: 0;
+}  
+20% {
+    width: 40%;
+}
+70% {
+    width: 100%;
+}
+100% { 
+  width: 100%; 
+  opacity: 1;
+}
+}
+
+@keyframes aster-animate {
+  0% {
+   opacity: 1;
+} 
+90% { 
+  opacity: 0.1;
+}
+}
+
+@-webkit-keyframes aster-animate {
+  0% {
+   opacity: 0.5;
+} 
+90% { 
+  opacity: 1;
+}
+}
+
+@keyframes circle-animate {
+  0% {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      opacity: 1;
+  } 
+  90% { 
+   width: 1px;
+   height: 1px;
+   opacity: 0.5;
+}
+}
+
+@-webkit-keyframes circle-animate {
+  0% {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    opacity: 1;
+} 
+50% { 
+   width: 1px;
+   height: 1px;
+   opacity: 0.5;
+}
+}
+
+@keyframes arrow-sector-animate {
+  0% {
+    opacity: 1;
+} 
+50% { 
+  opacity: 0.5;
+}
+}
+
+@-webkit-keyframes arrow-sector-animate {
+  0% {
+    opacity: 1;
+} 
+50% { 
+  opacity: 0.5;
+}
+}
+
+@keyframes reg-animate{
+    0%{
+        opacity: .5;
+    }
+    80%{
+        opacity: 1;
+    }
+}

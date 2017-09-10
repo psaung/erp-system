@@ -1,0 +1,23 @@
+// ====================================================================
+// Heading          : Import.scss
+// Descriptions     : All of the files in base folder will be imported to
+// file will be imported in main.scss . We will not
+// use sass globbing because it can't control the order of our sass file
+// and it will sort all of the file via alphabetical orders.
+// ====================================================================        
+
+@import "ionicons-variables";
+/*!
+  Ionicons, v#{$ionicons-version}
+  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
+  https://twitter.com/benjsperry  https://twitter.com/ionicframework
+  MIT License: https://github.com/driftyco/ionicons
+
+  Android-style icons originally built by Google’s
+  Material Design Icons: https://github.com/google/material-design-icons
+  used under CC BY http://creativecommons.org/licenses/by/4.0/
+  Modified icons to fit ionicon’s grid from original.
+*/
+
+@import "ionicons-font";
+@import "ionicons-icons";

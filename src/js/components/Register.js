@@ -14,66 +14,66 @@ export default class Register extends Component {
   render() {
     let username, password, confirmPassword, position, department
     return(
-      <div className="auth-form-control">
-        <h3 className="auth-form-control__heading">Sign Up</h3>
+      <div className="auth-form">
+        <h3 className="auth-form__heading">Sign Up</h3>
         <form>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" className="auth-form__label">Username</label>
             <input
               type="text"
               name="username"
-              className="auth-form-control__input"
+              className="auth-form__input"
               ref={node => {
                 username = node 
               }}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="auth-form__label">Password</label>
             <input
               type="password"
               name="password"
-              className="auth-form-control__input"
+              className="auth-form__input"
               ref={node => {
                 password= node 
               }}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Confirm</label>
+            <label htmlFor="password" className="auth-form__label">Confirm</label>
             <input
               type="password"
               name="confirm-password"
-              className="auth-form-control__input"
+              className="auth-form__input"
               ref={node => {
                 confirmPassword = node 
               }}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="department">Department</label>
+            <label htmlFor="department" className="auth-form__label">Department</label>
             <input
               type="text"
               name="department"
-              className="auth-form-control__input"
+              className="auth-form__input"
               ref={node => {
                 department = node 
               }}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="position">Position</label>
+            <label htmlFor="position" className="auth-form__label">Position</label>
             <input
               type="text"
               name="position"
-              className="auth-form-control__input"
+              className="auth-form__input"
               ref={node => {
                 position = node 
               }}
             />
           </div>
-          <button onClick={this.login} className="auth-form-control__submit">Login</button>
-          <input type="reset" value="Cancel" className="auth-form-control__reset"/>
+          <button onClick={this.login} className="btn btn--success btn--rounded">Login</button>
+          <input type="reset" value="Cancel" className="btn btn--warning btn--rounded"/>
         </form>
       </div>
     )

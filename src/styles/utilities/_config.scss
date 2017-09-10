@@ -1,0 +1,211 @@
+// ====================================================================
+// Heading          : Config File
+// Descriptions     : Variables and other sorts of config setting are implemented here. In sass ,
+// you should organize all of the variables in a single file . They are pretty intuitive and easily
+// maintainable. Variable can be declared according to your theme or as you wanted.
+// ====================================================================
+
+// =================  Variable ======================= //
+
+// For grid system
+
+$g-col-width    : 65 !default;
+$g-gutter-width : 20 !default;
+$g-col-count    : 12 !default;
+$g-cont-max-w   : 1050px !default;
+$g-col-padding  : 15px;
+
+// Breakpoints
+$brkpoint--xs    : 1px;
+$brkpoint--sm    : 420px;
+$brkpoint--md    : 900px;
+$brkpoint--lg    : 1350px;
+// $brkpoint--lg    : 1100px;
+
+// Typography
+// $google-font-url( impl this later )
+$base-font                  : 'Montserrat', sans-serif;
+$base-font-size             : 13px;
+$base-font-color            : #5e5e5e;
+$base-line-height           : 18px;
+$nav-menu-link-color        : #7f8c8d;
+$nav-link-color             : #fff;
+
+// use for info text
+$info-text-color            : #89949B;
+$info-text-size             : 12px;
+$info-text-style            : italic;
+
+
+// width and height
+$nav-offset-width           : 230px;
+// nav bar width  when it's in collapse state
+$nav-width-mini             : 68px;
+
+// background    
+$default                    : #e2e2e2;
+$default-hover              : #c2c2c2;
+$default-border             : #d2d2d2;
+
+$primary                    : #5c90d2;
+$primary-hover              : #2d62a5;
+$primary-border             : #3675c5;
+
+$success                    : #46c37b;
+$success-hover              : #2a8350;
+$success-border             : #34a263;
+
+
+$info                       : #70b9eb;
+$info-hover                 : #1f92e0;
+$info-border                : #43a3e5;
+
+$warning                    : #f3b760;
+$warning-hover              : #e68f11;
+$warning-border             : #efa231;
+
+$danger                     : #d26a5c;
+$danger-hover               : #a53c2d;
+$danger-border              : #c54736;
+
+$base-bg                    : #e8ebf1; //#f4f4f4;
+$nav-menu-bg                : #2a3036;
+$drop-down-title-bg         : #1F9C1A;
+$drop-down-menu-hover-bg    : $drop-down-title-bg;
+$nav-link-hover-bg          : #14171a;
+$panel-bg                   : #2a3036;
+$submit-btn-bg              : #6ad1d8;
+$cancel-btn-bg              : #d8796a;
+$user-auth-bg               : #2a3036;
+$user-auth-submit-btn-bg    : #1d2125;
+$user-auth-submit-btn-border: #3e4750;
+$record-set-bg              : #f6f6f6;
+$collapse-bg                : #1c2024;
+$submit-hover-color         : #0c0e10;
+$input-border-color         : #ececec; // temp
+
+$backdrop-bg                : rgba(48,48,54,0.85);
+$backdrop-bg-violet         : rgba(48,48,54,0.85);
+
+
+// color
+$nav-divider-br-top         : #181b1e;
+$nav-divider-br-bot         : #3a4149;
+$panel-border-color         : #DADCE2;//cecece;
+$record-set-broder-color    : #cacaca;
+
+// positioning
+
+//post config by stg
+$post-background                : #fff;
+$post-photo-border-color        : #000;
+$post-font-color                : #000; 
+
+$green-post-background          : #55C9A6;
+$green-post-photo-border-color  : #55C9A6;
+$green-post-font-color          : #fff;
+
+$gray-post-background           : #89949B;
+$gray-post-photo-border-color   : #89949B;
+$gray-post-font-color           : #fff;
+
+// news post
+$news-post-profile-background-color     : #ececec;
+$news-post-profile-background-size      : 50px 50px;
+$news-post-comment-date-color           : #89949B;
+$news-post-comment-like-icon-font-size  : 20px;
+$news-post-like-text-color              : #777777;
+$news-post-like-icon-color              : #1D8EFF;
+$news-post-like-icon-font-size          : 14px;
+
+// offcanvas config by stg
+
+$offcanvas-animation-duration                   : 0.5s;
+$offcanvas-max-width                            : 350px;
+$offcanvas-width                                : 350px;
+$offcanvas-top-position                         : 0px;
+$offcanvas-right-position                       : -350px;
+$offcanvas-background-color                     : transparent;
+$offcanvas-post-background-color                : #fff;
+$offcanvas-inner-post-background-color          : #fff;
+$offcanvas-inner-post-header-background-color   : #7CCFFD;
+$offcanvas-inner-post-header-border-top         : 1px solid #95D8FD;
+$offcanvas-inner-post-header-border-bottom      : 1px solid #83BDDE;
+$offcanvas-inner-post-header-title-color        : #fff;
+$offcanvas-inner-post-header-title-line-height  : 50px;
+$offcanvas-inner-post-header-title-font-weight  : 500;
+$offcanvas-inner-post-header-title-text-indent  : 8px;
+$offcanvas-inner-post-header-title-icon-font-size: 17px;
+
+$offcanvas-wrapper-background-color             : #fff;
+
+
+// TABLE component by stg
+$full                       : 100%;
+$half                       : 50%;
+$third                      : 33.333334%;
+
+$table-font-size            : 12px;
+
+$header-height              : 40px;
+$header-lineHeight          : $header_height;
+$header-font-size           : 15px;
+$header-font                : Georgia, Arial;
+
+// gradient color //
+
+$auth-gradient              : linear-gradient(rgb(97, 144, 232), rgb(167, 191, 232));
+
+$gradient-primary           :repeating-linear-gradient(45deg,$primary ,$primary  10px,$primary-border 10px,$primary-border 20px);
+$gradient-success           :repeating-linear-gradient(45deg,$success,$success 10px,$success-border 10px,$success-border 20px); 
+$gradient-info              :repeating-linear-gradient(45deg,$info,$info 10px,$info-border 10px,$info-border 20px);
+$gradient-warning           :repeating-linear-gradient(45deg,$warning,$warning 10px,$warning-border 10px,$warning-border 20px);
+$gradient-danger            :repeating-linear-gradient(45deg,$danger,$danger 10px,$danger-border 10px,$danger-border 20px);
+
+$plain-gradient-success           :linear-gradient(to right, #46C37B 0%, #43BF78 29%, #54EA94 100%);
+$plain-gradient-default           :linear-gradient(to right, #5c90d2 0%, #4271AD 29%, #629FEC 100%);
+$plain-gradient-info              :linear-gradient(to right, #65AADA 0%, #599CCA 29%, #7CC6F9 100%);
+$plain-gradient-warning           :linear-gradient(to right, #F3B55C 0%, #DCA556 29%, #F5D3A1 100%);
+$plain-gradient-error             :linear-gradient(to right, #d26a5c 0%, #B15043 29%, #F18C7F 100%);
+
+$title-order-chevron-container-width        : 12px;
+$title-order-chevron-container-height       : $header-height;
+
+$row-height                 : 45px;
+$row-lineHeight             : $row_height;
+
+$pag-holder-height          : 35px;
+
+$pag-box-width              : 23px;
+$pag-box-height             : 20px;
+$pag-box-margin             : 4px;
+$pag-box-font-size          : 10px;
+
+
+//PANEL config by stg
+
+
+$p-head-height				: 35px;
+
+// === collapse === \\
+$clp-width					: 32px;
+$clp-height					: 25px;
+
+// === search === \\
+$search-height				: $p-head-height - $p-head-height*.2;
+$search-width				: $search-height*6.5;
+$search-right-position		: $search-width/2;
+$search-bg					: #fff;
+$search-text-indent			: 4px;
+$search-font 				: Georgia, Arial;
+$search-font-size			: 9px;
+$search-letter-spacing		: .5px;
+
+// === title === \\
+$panel-title-font 			: Georgia, Arial;
+$panel-title-font-size		: 13px;
+$panel-title-font-color		: #fff;
+$panel-title-letter-spacing	:.5px;
+
+
+// ==============   End of variable    =================== //
