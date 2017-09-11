@@ -30,7 +30,7 @@ const component = (
 )
 
 const render = () => ReactDOM.render(
-  <div>{component}</div>,
+  <div className="full-height-container">{component}</div>,
   document.getElementById('root')
 )
 

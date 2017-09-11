@@ -1,7 +1,14 @@
 
 .flex-centered-container {
+  height: 100%; 
+
+  /* flex */
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
+}
+
+.full-height-container {
+  height: 100%;
 }

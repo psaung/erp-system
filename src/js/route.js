@@ -9,9 +9,9 @@ import {
 export default(store) => {
   const { dispatch } = store
   return (
-    <div>
-      <Route exact path="/" component={Dashboard} />
-      <Route path="login" component={Login} />
+    <div className="full-height-container">
+      <Route exact path="/" component={Login} />
+      <Route path="/register" component={Register} />
     </div>
   )
 }
