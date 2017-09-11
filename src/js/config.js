@@ -1,6 +1,6 @@
 const config = {
-  host: '',
-  apiHost: '',
+  host: 'http://localhost:8000/',
+  apiHost: 'htpp://localhost:8000/api/v1',
 }
 
 export default config
