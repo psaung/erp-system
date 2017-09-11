@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Counter from './../components/Counter'
+import { Nav } from './../components'
 
 class Dashboard extends Component {
   constructor() {
@@ -9,23 +9,16 @@ class Dashboard extends Component {
   }
   
   render() {
-    const { store } = this.props
-    const action = type => store.dispatch({type})
     return (
-      <div className="l-auth">
-          <Counter
-            value={store.getState()}
-            onIncrement={() => action('INCREMENT')}
-            onDecrement={() => action('DECREMENT')}
-            onIncrementAsync={() => action('INCREMENT_ASYNC')}
-            onIncrementIfOdd={() => action('INCREMENT_IF_ODD')} />
+      <div className="l-content-wrapper">
+        <Nav />
+        { /* main content here */ }
       </div>
     )
   }
 }
 
 Dashboard.propTypes = {
-  store: PropTypes.object,
 }
 
 
