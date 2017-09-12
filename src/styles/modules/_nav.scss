@@ -1,0 +1,19 @@
+.nav {
+  @include e(item) {
+    text-align: center;
+    padding: 10px 0px;
+    a,
+    a:visited,
+    a:link,
+    a:hover,
+    a:active {
+      color: $nav-icon-color;
+      font-size: 2.5em;
+    }
+    @include m(active) {
+      a {
+        color: $nav-icon-active-color !important;
+      }
+    }
+  }
+}

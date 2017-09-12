@@ -1,2 +1,5 @@
 export CommentBox from './CommentBox'
 export Nav from './Nav'
+export Header from './Header'
+export Toastr from './Toastr'
+export UserSetting from './UserSetting'

@@ -4,6 +4,10 @@
 // must be prefixed with l-.
 // ====================================================================
 
-.l-nav-menu {
-
+.l-nav {
+  background-color: $nav-menu-bg;
+  width: 100px;
+  position: absolute;
+  top: 0;
+  bottom: 0; 
 }

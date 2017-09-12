@@ -27,6 +27,14 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
+/* font */
+@font-face {
+  font-family: "Ionicons";
+  font-weight: normal;
+  font-style: normal;
+  src: url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/fonts/ionicons.woff) format("woff");
+}
+
 * {
     margin: 0;
     padding: 0;
