@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Nav } from './../components'
+import { Nav, Header } from './../components'
 
 class Dashboard extends Component {
   constructor() {
@@ -10,16 +10,14 @@ class Dashboard extends Component {
   
   render() {
     return (
-      <div className="l-content-wrapper">
-        <Nav />
-        { /* main content here */ }
+      <div>
+        <Header />
+        <div className="panel">
+          <h3 className="panel__heading">Application Log</h3>
+        </div>
       </div>
     )
   }
 }
-
-Dashboard.propTypes = {
-}
-
 
 export default Dashboard

@@ -14,4 +14,4 @@ class UserSetting extends Component {
   }
 }
 
-export default Header
+export default UserSetting

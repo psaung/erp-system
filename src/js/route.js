@@ -1,18 +1,21 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router'
 import {
   Dashboard,
   Login,
   Register,
+  Error404,
+  AdminPanel,
 } from './containers'
 
 export default(store) => {
   const { dispatch } = store
   return (
-    <div className="full-height-container">
-      <Route exact path="/" component={Dashboard} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-    </div>
+      <Switch>
+        <Route path="/admin" component={AdminPanel} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route component={Error404}/>
+      </Switch>
   )
 }
