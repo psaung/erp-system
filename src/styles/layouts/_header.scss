@@ -5,7 +5,29 @@
 // ====================================================================
 
 .l-header {
+  position: relative;
+  border-bottom: 2px solid $header-border-color;
+  @include e(heading) {
+    margin-bottom: 10px;
+    color: $nav-icon-active-color !important;
+  }
+  @include e(setting) {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    cursor: pointer;
 
+    width: 36px;
+    height: 36px;
+    padding-top: 8px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: $nav-icon-active-color;
+    color: white;
+  }
+  @include e(overview) {
+    padding: 15px 0px 15px 10px;
+  }
 }
 
 .l-logo {
@@ -21,3 +43,26 @@
     }
 }
 
+.l-filter {
+  border-top: 1px solid #eee;
+  padding: 10px;
+
+  @include e(input) {
+    &:valid + input {
+      transform: scale(1);
+    }
+  }
+
+  @include e(budge) {
+    padding: 0px 5px;
+  }
+
+  @include e(heading) {
+    color: $nav-icon-active-color !important;
+  }
+
+  @include e(submit) {
+    transition: transform ease-in 200ms;
+    transform: scale(0);
+  }
+}

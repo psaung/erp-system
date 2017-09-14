@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Filter from './Filter'
+
 class Header extends Component {
   constructor() {
     super()
@@ -11,8 +13,15 @@ class Header extends Component {
       <div className="l-header">
         { /* user setting */ }
         { /* TODO: breadcrumbs here */ }
-        <h3 className="l-header__heading">Dashboard</h3>
+        <div className="l-header__setting">
+          <i className="ion-person" />
+        </div>
+        <div className="l-header__overview">
+          <h3 className="l-header__heading">Dashboard</h3>
+          <h3>Dashboard Overview</h3>
+        </div>
         { /* TODO: filter list */ }
+        <Filter />
       </div>
     )
   }
