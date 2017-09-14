@@ -1,0 +1,8 @@
+.tabel {
+  width: 100%;
+  @include m(border) {
+    & > .heading {
+      border: 2px solid #ddd;
+    }
+  }
+}
