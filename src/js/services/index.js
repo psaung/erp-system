@@ -3,6 +3,7 @@
  */ 
 
 import _employee from './employee'
+import _timeframe from './sample'
 
 const TIMEOUT = 100
 const MAX_CHECKOUT = 2
@@ -15,5 +16,13 @@ export const api = {
   },
   checkAuth() {
 
+  }
+}
+
+export const timeframe = {
+  getTimeFrame() {
+    return new Promise( resolve => {
+      setTimeout(() => resolve(_timeframe), TIMEOUT)
+    })
   }
 }
