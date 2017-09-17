@@ -1,0 +1,18 @@
+.calendar {
+  @include e(item) {
+    padding: 10px;
+    margin: 10px;
+    background-color: $calendar-bg; 
+    @include m(active) {
+      background-color: $calendar-bg-active; 
+    }  
+  }
+
+  @include e(ion-group) {
+    margin: 5px 0px;
+  }
+
+  @include e(ion-icon) {
+    font-size: 2em;
+  }
+}

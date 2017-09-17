@@ -6,11 +6,31 @@
   text-align: center;
   margin-right: 5px;
 
+  @include m(material-success) {
+    background-color: #009788;
+		color: white;
+		text-transform: uppercase;
+		&:hover,
+		&:focus {
+			background-color: #00bfac;			
+		}
+  } 
+
+	@include m(white) {
+		background-color: #fff;
+		color: #313131;
+		&:hover,
+		&:focus {
+			background-color: #eee;
+		}
+	}
+
   @include m(success) {
     background-color: $success;
     border: 1px solid $success-border;
     color: white;
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $success-hover;
     }
   }

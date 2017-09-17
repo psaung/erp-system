@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
-import { 
-  Header,
-  DepartmentList,
-  DepartmentForm,
+import { connect } from 'react-redux'
+import {
+	Header,
+	RoleList,
+	RoleForm,
 } from './../components'
 
-class Department extends Component {
+class Role extends Component {
   constructor() {
     super()
   }
@@ -18,19 +18,19 @@ class Department extends Component {
     return (
       <div>
         <Helmet>
-          <title>Department</title>
+          <title>Role</title>
         </Helmet>
-        <Header heading="Department" />
+        <Header heading="Role" />
         <div className="panel">
-          <h3 className="panel__heading">Department</h3>
+          <h3 className="panel__heading">Role</h3>
           <div className="panel__body">
-            <DepartmentList departments={[]} />
+						<RoleList roles={[]}/>
           </div>
         </div>
-        <DepartmentForm />
+				<RoleForm />
       </div>
-    ) 
+    )
   }
 }
 
-export default Department
+export default Role 

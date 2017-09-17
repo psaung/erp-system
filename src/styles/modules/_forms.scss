@@ -23,3 +23,31 @@
   }
   
 }
+
+.material-form {
+  padding-left: 10px;
+  @include e(group) {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  @include e(input) {
+    background: none;
+    border-bottom: 1px solid #ccc;
+    padding-left: 0px;
+    min-width: 250px;
+    &:focus,
+    &:valid {
+      & + .material-form__label {
+        @include transform(translate(-20px, -20px) scale(0.8));
+      color: $nav-icon-active-color;
+      } 
+      border-bottom: 1px solid $nav-icon-active-color;
+    }
+  } 
+  @include e(label) {
+    position: absolute;
+    left: 0px;
+    top: 10px; 
+    @include transition(transform ease-in 200ms);
+  }
+}
