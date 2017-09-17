@@ -2,15 +2,16 @@ import 'babel-polyfill'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { HashRouter } from 'react-router-dom'
 
 
 import './../styles/main.scss'
-import reducer from './reducers/counter'
+import reducer from './reducers/frame'
 import Dashboard from './components/Dashboard'
-import rootSaga from './sagas/counter-saga'
+import rootSaga from './sagas/frame-saga'
 
 import AppRouter from './route'
 
@@ -30,7 +31,9 @@ const component = (
 )
 
 const render = () => ReactDOM.render(
-  <div className="full-height-container">{component}</div>,
+  <Provider store={store}>
+    <div className="full-height-container">{component}</div>
+  </Provider>,
   document.getElementById('root')
 )
 

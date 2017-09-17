@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Helmet } from 'react-helmet'
+
 import Counter from './Counter'
 import Register from './Register'
 import Login from './Login'
@@ -24,6 +26,9 @@ class Dashboard extends Component {
     const action = type => store.dispatch({type})
     return (
       <div className="l-auth">
+        <Helmet>
+          <title>ERP Dashboard</title>
+        </Helmet>
         <div className="menu">
           <button onClick={() => this.showViews('login')}>Sign In</button>
           <button onClick={() => this.showViews('register')}>Sign Up</button>

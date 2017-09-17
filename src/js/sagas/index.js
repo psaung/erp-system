@@ -7,3 +7,9 @@ export function* getFrames() {
   const frames = yield call(timeFrame.getTimeFrame)
   yield put(actions.receiveTimeFrame(frames))
 }
+
+export default function* root() {
+  yield all([
+    fork(getFrames),
+  ])
+}

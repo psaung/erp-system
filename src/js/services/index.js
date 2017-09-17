@@ -19,7 +19,7 @@ export const api = {
   }
 }
 
-export const timeframe = {
+export const timeFrame = {
   getTimeFrame() {
     return new Promise( resolve => {
       setTimeout(() => resolve(_timeframe), TIMEOUT)
