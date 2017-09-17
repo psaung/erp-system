@@ -9,7 +9,6 @@ class Nav extends Component {
   
   render() {
     const { location } = this.props
-    console.log(location)
     return(
       <nav className="l-nav">
         <h3 className="ta-center l-logo">Logo</h3>

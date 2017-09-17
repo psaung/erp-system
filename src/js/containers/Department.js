@@ -16,6 +16,7 @@ class Department extends Component {
         <Helmet>
           <title>Department</title>
         </Helmet>
+        <Header heading="Department" />
       </div>
     ) 
   }

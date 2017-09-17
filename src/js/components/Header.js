@@ -9,6 +9,7 @@ class Header extends Component {
   } 
 
   render() {
+    const { heading } = this.props
     return(
       <div className="l-header">
         { /* user setting */ }
@@ -17,14 +18,18 @@ class Header extends Component {
           <i className="ion-person" />
         </div>
         <div className="l-header__overview">
-          <h3 className="l-header__heading">Dashboard</h3>
-          <h3>Dashboard Overview</h3>
+          <h3 className="l-header__heading">{ heading }</h3>
+          <h3>{ heading } Overview</h3>
         </div>
         { /* TODO: filter list */ }
         <Filter />
       </div>
     )
   }
+}
+
+Header.propTypes = {
+  heading: PropTypes.string.isRequired
 }
 
 export default Header

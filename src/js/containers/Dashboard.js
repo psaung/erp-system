@@ -16,7 +16,7 @@ class Dashboard extends Component {
         <Helmet>
           <title>Dashboard</title>
         </Helmet>
-        <Header />
+        <Header heading="Dashboard" />
         <div className="panel">
           <h3 className="panel__heading">Application Log</h3>
           <table className="table table--border">

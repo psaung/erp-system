@@ -16,7 +16,7 @@ class TimeCard extends Component {
         <Helmet>
           <title>Time Card</title>
         </Helmet>
-        <Header />
+        <Header heading="Time Card"/>
         <div className="panel">
           <h3 className="panel__heading">Time Card</h3>
           <div className="panel__body">
