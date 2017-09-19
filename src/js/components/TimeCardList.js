@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 
 class TimeCardList extends Component {
   render() {
+    console.log(this.props)
     const { frames } = this.props
     return (
       <div>

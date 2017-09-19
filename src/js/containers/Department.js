@@ -15,6 +15,7 @@ class Department extends Component {
   }
 
   render() {
+    const { api } = this.props
     return (
       <div>
         <Helmet>
@@ -24,7 +25,7 @@ class Department extends Component {
         <div className="panel">
           <h3 className="panel__heading">Department</h3>
           <div className="panel__body">
-            <DepartmentList departments={[]} />
+            <DepartmentList departments={api}/>
           </div>
         </div>
         <DepartmentForm />
@@ -33,4 +34,10 @@ class Department extends Component {
   }
 }
 
-export default Department
+Department.propTypes = {
+  api: PropTypes.array.isRequired
+}
+
+export default connect(
+  state => (state)
+)(Department)

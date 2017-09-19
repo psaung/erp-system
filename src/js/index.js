@@ -11,7 +11,7 @@ import { HashRouter } from 'react-router-dom'
 import './../styles/main.scss'
 import reducer from './reducers/frame'
 import Dashboard from './components/Dashboard'
-import rootSaga from './sagas/frame-saga'
+import rootSaga from './sagas'
 
 import AppRouter from './route'
 
