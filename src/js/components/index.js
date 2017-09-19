@@ -15,3 +15,5 @@ export LeaveList from './Leave/LeaveList'
 export LeaveCalendar from './Leave/LeaveCalendar'
 export LeaveItem from './Leave/LeaveItem'
 
+export UserList from './User/UserList'
+export UserForm from './User/UserForm'
