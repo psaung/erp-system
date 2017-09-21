@@ -10,9 +10,17 @@ export function* getFrames() {
   yield put(actions.receiveTimeFrame(frames))
 }
 
+export function* getRoles() {
+  const roles = yield call(api.getRoles)
+  // TODO: implement api actions
+}
+
 export function* getDepartments() {
   const departments = yield call(api.getDepartments)
   yield put(apiActions.responseSuccess(departments)) 
+}
+
+function* loginUser(login, fields) {
 }
 
 export default function* root() {
