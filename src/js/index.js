@@ -9,7 +9,7 @@ import { HashRouter } from 'react-router-dom'
 
 
 import './../styles/main.scss'
-import reducer from './reducers/frame'
+import reducer from './reducers'
 import Dashboard from './components/Dashboard'
 import rootSaga from './sagas'
 

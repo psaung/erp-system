@@ -34,7 +34,7 @@ export const env = Object.assign({
       },
       {
         property: 'og:title',
-        content: 'Redux Saga example,
+        content: 'Redux Saga example',
       },
       {
         property: 'og:description',
@@ -48,6 +48,7 @@ export const env = Object.assign({
         property: 'og:creator',
         content: '@bh',
       },
+    ]
   },      
-}, enviroment)
+}, environment)
 

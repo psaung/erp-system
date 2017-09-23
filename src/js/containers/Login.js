@@ -1,18 +1,33 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import * as authActions from './../actions/auth-actions'
 
-export default class Login extends Component {
+class Login extends Component {
 
   constructor() {
     super()
     this.login = this.login.bind(this)
   }
 
-  login(e) {
-    e.preventDefault()
+  componentWillReceiveProps(newProps) {
+    if(newProps.auth) {
+      if(newProps.auth.isAuthenticated && newProps.auth.role === "admin") {
+        newProps.history.push('/admin/');
+      }
+    }
+  }
+
+  login(username, password) {
+    this.props.requestLogin({
+      username,
+      password,
+    })
   }
 
   render() {
     let username, password
+    console.log(this.props)
     return(
       <div className="flex-centered-container l-auth">
         <div className="auth-form">
@@ -42,7 +57,12 @@ export default class Login extends Component {
             </div>
             <div className="form-group">
             </div>
-            <button onClick={this.login} className="btn btn--success btn--rounded">Login</button>
+            <button onClick={ e=> {
+              e.preventDefault();
+              this.login(username.value, password.value)
+              username.value = ""
+              password.value = ""
+            }} className="btn btn--success btn--rounded">Login</button>
             <input type="reset" value="Cancel" className="btn btn--warning btn--rounded"/>
           </form>
         </div>
@@ -50,3 +70,13 @@ export default class Login extends Component {
     )
   }
 }
+
+Login.propTypes = {
+  requestLogin: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+}
+
+export default connect(
+  state => (state),
+  authActions,
+)(Login)

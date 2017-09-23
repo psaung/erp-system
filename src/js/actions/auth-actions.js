@@ -2,8 +2,6 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGIN_REQUEST,
-  LOGIN_FAILURE,
   AUTHORIZATION_FAILURE,
   AUTHORIZATION_SUCCESS,
   AUTHORIZATION_REQUEST,
@@ -20,20 +18,22 @@ export function requestLogin(creds) {
 }
 
 export function loginSuccess(result) {
-  const { name, role, authenticationToken } = result.user
+  const { name, role, authenticationToken } = result
+  console.log(result)
   return {
     type: LOGIN_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
     user: {
-      name: name,
-      role: role,
+      name,
+      role,
       token_id: authenticationToken 
     },
   }
 }
 
 export function loginFailure(error) {
+  console.log(error)
   return {
     type: LOGIN_FAILURE,
     isFetching: false,

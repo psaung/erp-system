@@ -14,9 +14,8 @@ export default(store) => {
   const customRender = (props) => {
     console.log(store.getState)
     const { auth } = store.getState()
-    
     // check authorization is set 
-    if(auth) {
+    if(auth && auth.isAuthenticated && auth.role === "admin") {
       return <AdminPanel {...props} />
     } else {
       // if not render the UnAuthorize component

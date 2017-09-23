@@ -1,9 +1,11 @@
-import { RECEIVE_FRAME } from './../actions/time-actions'
+import { API_RESPONSE_SUCCESS } from './../constants/api-types' 
 
-export default function frames(state = [], action = {}) {
+const initialState =  []
+
+export default function reducer(state = initialState, action = {}) {
   switch(action.type) {
-    case RECEIVE_FRAME:
-      return action.frame || []
+    case API_RESPONSE_SUCCESS:
+      return action.result || []
       /*
       return {
         ...state,
