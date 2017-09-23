@@ -20,12 +20,14 @@ class Leave extends Component {
           <title>Leave</title>
         </Helmet>
         <Header heading="Leave" />
-				<div className="panel">
-					<h3 className="panel__heading">Leave Panel</h3>
-					<div className="panel__body">
-						<LeaveCalendar month="9" year="2017" />
-					</div>
-				</div>
+        <main className="l-main">
+          <div className="panel">
+            <h3 className="panel__heading">Leave Panel</h3>
+            <div className="panel__body">
+              <LeaveCalendar month="9" year="2017" />
+            </div>
+          </div>
+        </main>
       </div>
     ) 
   }

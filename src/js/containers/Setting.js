@@ -17,11 +17,13 @@ class Setting extends Component {
           <title>Setting</title>
         </Helmet>
         <Header heading="Setting" />
-        <div className="panel">
-          <h3 className="panel__heading">Setting</h3>
-          <div className="panel__body">
+        <main className="l-main">
+          <div className="panel">
+            <h3 className="panel__heading">Setting</h3>
+            <div className="panel__body">
+            </div>
           </div>
-        </div>
+        </main>
       </div>
     )
   }

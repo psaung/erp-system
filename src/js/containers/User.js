@@ -21,13 +21,15 @@ class User extends Component {
           <title>User</title>
         </Helmet>
         <Header heading="User" />
-        <div className="panel">
-          <h3 className="panel__heading">User</h3>
-          <div className="panel__body">
-            <UserList users={[]}/>
+        <main className="l-main">
+          <div className="panel">
+            <h3 className="panel__heading">User</h3>
+            <div className="panel__body">
+              <UserList users={[]}/>
+            </div>
           </div>
-        </div>
-        <UserForm />
+          <UserForm />
+        </main>
       </div>
     )
   }

@@ -10,7 +10,7 @@ class TimeCardList extends Component {
     console.log(this.props)
     const { frames } = this.props
     return (
-      <div>
+      <div style={{ height: '1300px' }}>
       { frames.length > 0 && 
         <ul>
           {frames.map(frame => 

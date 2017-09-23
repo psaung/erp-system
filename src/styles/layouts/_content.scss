@@ -7,12 +7,15 @@
 .l-nav {
   background-color: $nav-menu-bg;
   width: 100px;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0; 
+  z-index: 100;
 }
 
 .l-main {
+  z-index: -1;
+  padding-top: 130px;
   width: 100%;
   padding-left: 100px;
 }

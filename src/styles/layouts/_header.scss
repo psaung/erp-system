@@ -5,8 +5,12 @@
 // ====================================================================
 
 .l-header {
-  position: relative;
+  position: fixed;
   border-bottom: 2px solid $header-border-color;
+  padding-left: 100px;
+  background-color: white;
+  z-index: 1;
+  width: 100%;
   @include e(heading) {
     margin-bottom: 10px;
     color: $nav-icon-active-color !important;

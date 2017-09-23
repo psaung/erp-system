@@ -21,13 +21,15 @@ class Role extends Component {
           <title>Role</title>
         </Helmet>
         <Header heading="Role" />
-        <div className="panel">
-          <h3 className="panel__heading">Role</h3>
-          <div className="panel__body">
-						<RoleList roles={[]}/>
+        <div className="l-main">
+          <div className="panel">
+            <h3 className="panel__heading">Role</h3>
+            <div className="panel__body">
+              <RoleList roles={[]}/>
+            </div>
           </div>
+          <RoleForm />
         </div>
-				<RoleForm />
       </div>
     )
   }

@@ -22,13 +22,15 @@ class Department extends Component {
           <title>Department</title>
         </Helmet>
         <Header heading="Department" />
-        <div className="panel">
-          <h3 className="panel__heading">Department</h3>
-          <div className="panel__body">
-            <DepartmentList departments={api}/>
+        <main className="l-main">
+          <div className="panel">
+            <h3 className="panel__heading">Department</h3>
+            <div className="panel__body">
+              <DepartmentList departments={api}/>
+            </div>
           </div>
-        </div>
-        <DepartmentForm />
+          <DepartmentForm />
+        </main>
       </div>
     ) 
   }

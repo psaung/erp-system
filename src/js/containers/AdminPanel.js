@@ -18,20 +18,18 @@ const AdminPanel = props => ({
     return(
       <div className="l-content-wrapper">
         <Nav location={props.history.location}/>
-        <main className="l-main">
-          <Switch>
-            <Route exact path="/admin/" component={Dashboard} />
-            <Route path="/admin/timecard" component={TimeCard} />
-            <Route path="/admin/department" component={Department} />
-            <Route path="/admin/leave" component={Leave} />
-            <Route path="/admin/role" component={Role} />
-            <Route path="/admin/finance" component={Finance} />
-            <Route path="/admin/user" component={User} />
-            <Route path="/admin/setting" component={Setting} />
+        <Switch>
+          <Route exact path="/admin/" component={Dashboard} />
+          <Route path="/admin/timecard" component={TimeCard} />
+          <Route path="/admin/department" component={Department} />
+          <Route path="/admin/leave" component={Leave} />
+          <Route path="/admin/role" component={Role} />
+          <Route path="/admin/finance" component={Finance} />
+          <Route path="/admin/user" component={User} />
+          <Route path="/admin/setting" component={Setting} />
 
-            <Route render={()=> <div>Nothing found</div>} />
-          </Switch> 
-        </main>
+          <Route render={()=> <div>Nothing found</div>} />
+        </Switch> 
       </div>
     )
   }

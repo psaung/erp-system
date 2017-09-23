@@ -17,11 +17,13 @@ class Finance extends Component {
           <title>Finance</title>
         </Helmet>
         <Header heading="Finance" />
-				<div className="panel">
-					<h3 className="panel__heading">Finance</h3>
-					<div className="panel__body">
-					</div>
-				</div>
+        <main className="l-main">
+          <div className="panel">
+            <h3 className="panel__heading">Finance</h3>
+            <div className="panel__body">
+            </div>
+          </div>
+        </main>
       </div>
     ) 
   }

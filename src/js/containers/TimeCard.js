@@ -17,12 +17,14 @@ class TimeCard extends Component {
           <title>Time Card</title>
         </Helmet>
         <Header heading="Time Card"/>
-        <div className="panel">
-          <h3 className="panel__heading">Time Card</h3>
-          <div className="panel__body">
-            <TimeCardList />
+        <main className="l-main">
+          <div className="panel">
+            <h3 className="panel__heading">Time Card</h3>
+            <div className="panel__body">
+              <TimeCardList />
+            </div>
           </div>
-        </div>
+        </main>
       </div>
     )
   }
