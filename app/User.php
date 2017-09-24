@@ -2,12 +2,28 @@
 
 namespace App;
 
+use App\Department;
+
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
+
+    const VERIFIED_USER = '1';
+    const UNVERIFIED_USER = '0';
+
+    const ADMIN_USER = 'admin';
+    const REGULAR_USER = 'employee';
+    const MANAGER = 'manager';
+    const HR_MANAGER = 'hr_manager';
+    const FINANCE = 'finance';
+
+    protected $table = 'users';
+    // public $transformer = UserTransformer::class;
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +31,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 
+        'email', 
+        'password',
+        'verified',
+        'verification_token',
+        'role'
     ];
 
     /**
@@ -24,6 +45,49 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'pivot',
+        'password', 
+        'remember_token',
+        'verification_token',
     ];
+
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = strtolower($name);
+    }
+
+    public function getNameAttribute($name)
+    {
+        return ucwords($name);
+    }
+
+    public function setEmailAttribute($email)
+    {
+        $this->attributes['email'] = strtolower($email);
+    }
+
+    public function isVerified()
+    {
+        return $this->verified == User::VERIFIED_USER;
+    }
+
+    public function isAdmin()
+    {
+        return $this->role == User::ADMIN_USER;
+    }
+
+    public function isManager()
+    {
+        return $this->role == User::MANAGER;
+    }
+
+    public function departments()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public static function generateVerificationCode()
+    {
+        return str_random(40);
+    }
 }
