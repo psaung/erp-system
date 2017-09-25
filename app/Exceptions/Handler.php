@@ -44,6 +44,19 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        /*
+        echo csrf_token();
+        // var_dump($exception);
+        var_dump($exception instanceof AuthenticationException);
+        // if the exception is AuthenticationException show this
+         */
+        if($exception instanceof AuthenticationException) 
+        {
+            // var_dump($exception);
+            return $this->unathenticated($request, $exception);
+        } 
+
+        // return $this->errorResponse('Unexpected Exception. Try later', 500);
         return parent::render($request, $exception);
     }
 
@@ -56,10 +69,28 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if ($request->expectsJson()) {
+        return $this->errorResponse('Unauthenticated', 401);
+
+        // we will only show json response and restrict to redirect login view
+        /* if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
-
+        
         return redirect()->guest(route('login'));
+         */
     }
+
+    /**
+     * Create a response object from the given validation exception
+     *
+     * @param \Illuminate\Validation\ValidationException $e
+     * @param \Illuminate\Http\Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+    protected function convertValidationExceptionToResponse(ValidationExcpetion $e, $request)
+    {
+        $errors = $e->validator->errors()->getMessages();
+
+        return $this->errorResponse($errors, 422);
+    }
+     */
 }

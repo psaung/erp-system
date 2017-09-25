@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
+use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ApiController;
 
-class DepartmentController extends ApiController
+class UserController extends ApiController 
 {
-    public function __construct()
-    {
-      parent::__construct();
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +14,10 @@ class DepartmentController extends ApiController
      */
     public function index()
     {
-        $departments = Department::all();
-        return $this->showAll($departments);
+        //
+        $users = User::all();
+        // return response()->json(['data' => $users]);
+        return $this->showAll($users);
     }
 
     /**
