@@ -3,11 +3,14 @@
 namespace App\Exceptions;
 
 use Exception;
+use App\Traits\ApiResponser;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponser;
+
     /**
      * A list of the exception types that should not be reported.
      *
@@ -44,8 +47,8 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // echo csrf_token();
         /*
-        echo csrf_token();
         // var_dump($exception);
         var_dump($exception instanceof AuthenticationException);
         // if the exception is AuthenticationException show this
@@ -53,7 +56,7 @@ class Handler extends ExceptionHandler
         if($exception instanceof AuthenticationException) 
         {
             // var_dump($exception);
-            return $this->unathenticated($request, $exception);
+            return $this->unauthenticated($request, $exception);
         } 
 
         // return $this->errorResponse('Unexpected Exception. Try later', 500);

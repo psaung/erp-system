@@ -37,4 +37,13 @@ php artisan migrate:refresh --seed
 
 ### Authentication Error Handling
 
-Laravel unauthenticated function will redirect to the login view if the credentials are not correct by default so hav to create custom validation exception. In this function it will simply show unauthenticated 401 response with json format. You can find validation exception at app/Exceptions/Handler.php
+Laravel unauthenticated function will redirect to the login view if the credentials are not correct by default so hav to create custom validation exception. In this function it will simply show unauthenticated 401 response with json format. You can find validation exception at app/Exceptions/Handler.phpA
+
+
+### Create personal client
+
+In this application
+
+php artisan passport:client --personal
+
+use `MyApp` as the name of personal client

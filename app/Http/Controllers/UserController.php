@@ -39,6 +39,22 @@ class UserController extends ApiController
     public function store(Request $request)
     {
         //
+        $rules = [
+            'name' => 'required',
+            'emial' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed'
+        ];
+
+        // $this->validate($request, $rules);
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
+        $data['verified'] = User::UNVERIFIED_USER;
+        $data['verification_token'] = User::generateVerficiationCode();
+        $data['role'] = User::REGULAR_USER; // TODO: use role attribute from request
+
+        $user = User::create($data);
+
+        return $this->showOne($user, 201);
     }
 
     /**
