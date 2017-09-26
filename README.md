@@ -47,3 +47,12 @@ In this application
 php artisan passport:client --personal
 
 use `MyApp` as the name of personal client
+
+### CSRF control with laravel and react
+
+Disable csrf in development and enable on production. You can disable/enable CSRF token in app/Http/Kernal.php. You can get csrf token by csrf_token()
+```php
+<?php
+// u can disable/enable CSRF token at line 35
+\App\Http\Middleware\VerifyCsrfToken::class
+```
