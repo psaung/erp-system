@@ -6,6 +6,7 @@ import * as apiActions from './../actions/api-actions'
 import { loginSuccess, loginFailure } from './../actions/auth-actions'
 import { getTimeFrame } from './../reducers'
 import { api, timeFrame } from './../services'
+import { fetchData } from './api-saga'
 
 export function* getFrames() {
   const frames = yield call(timeFrame.getTimeFrame)
@@ -42,6 +43,7 @@ export default function* root() {
   yield all([
     fork(getFrames),
     fork(getDepartments),
+    fork(fetchData)
   ])
   yield takeEvery('LOGIN_REQUEST', loginUser)
 }

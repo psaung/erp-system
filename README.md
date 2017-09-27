@@ -56,3 +56,7 @@ Disable csrf in development and enable on production. You can disable/enable CSR
 // u can disable/enable CSRF token at line 35
 \App\Http\Middleware\VerifyCsrfToken::class
 ```
+
+### Daily Progress
+
+You can find every daily progress of the project in dailyprogress folder. In this folder, I save every single pieces of progress related with my workflow, reactjs and laravel stuff.  All of the progress are saved with each specific date.
