@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGOUT_SUCCESS,
 } from './../constants/auth-types'
 
 const initialState = {
@@ -34,6 +35,14 @@ export default function reducer(state = initialState, action = {}) {
         isFetching: false,
         isAuthenticated: false,
         error: action.error
+      }
+    case LOGOUT_SUCCESS:
+      return { 
+        ...state,
+        isFetching: false,
+        name: '',
+        role: '',
+        isAuthenticated: false,
       }
     default:
       return state

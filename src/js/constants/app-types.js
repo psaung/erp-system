@@ -1,4 +1,4 @@
-export const INC_COUNTER = 'INC_COUNTER'
-export const DEC_COUNTER = 'DEC_COUNTER'
+export const SHOW_LOG = 'SHOW_LOG'
+export const LOG_FINISHED = 'LOG_FINISHED'
 
 

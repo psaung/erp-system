@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StaggerMotion, Motion, spring } from 'react-motion'
+import { StaggeredMotion, Motion, spring } from 'react-motion'
 import PropTypes from 'prop-types'
 
 class Toastr extends Component {
@@ -16,8 +16,9 @@ class Toastr extends Component {
         show: true
       })
       window.setTimeout(function() {
+        console.log(this)
         this.setState({ show: false })
-      }.bind(this), 3000);
+      }.bind(this), 3000)
     }
   }
 
@@ -29,19 +30,17 @@ class Toastr extends Component {
 
   render() {
     const { message, modifier } = this.props.error
-    const show = this.state
     return(
-      <Motion style={{ x: spring(show ? 40: 0) }}>
+      <Motion style={{ x: spring(this.state.show ? 40 : 0) }} >
       { value => {
-        return(
-          <div className={ "toastr--"+modifier+" toastr"} style={{ height: value.x + "px" }}>
-            <div style={{ padding: '10px 0px' }}>
+        return (
+          <div className="toastr toastr--danger" style={{ height: value.x + "px" }}>
+            <div style={{ padding: '10px' }}>
               {message}
             </div>
           </div>
         )
-       }
-      }
+      }}
       </Motion>
     )
   }

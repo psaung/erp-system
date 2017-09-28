@@ -14,6 +14,7 @@ import Dashboard from './components/Dashboard'
 import rootSaga from './sagas'
 
 import AppRouter from './route'
+import { Toastr } from './components'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
@@ -32,7 +33,10 @@ const component = (
 
 const render = () => ReactDOM.render(
   <Provider store={store}>
-    <div className="full-height-container">{component}</div>
+    <div className="full-height-container">
+      {component}
+      <Toastr error={store.getState().app.message} show={store.getState().app.showLog}/>
+    </div>
   </Provider>,
   document.getElementById('root')
 )

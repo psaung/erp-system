@@ -41,3 +41,10 @@ export function loginFailure(error) {
     error,
   }
 }
+
+export function logoutSuccess() {
+  return {
+    type: LOGOUT_SUCCESS,
+    isAuthenticated: false,
+  }
+}

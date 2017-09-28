@@ -4,63 +4,31 @@
 // ====================================================================
 
 
-.toastr-container {
+.toastr {
     position: fixed;
     z-index: 99999;
-    bottom: 40px;
-    left: 215px;
-
-    @include m(full-width) {
-        right: 15px;
-        width: auto;
-        & > div {
-            width: 100%;
-            max-width: 100%;
-        }            
-    }
-
-    @include m(top) {
-        top: 75px;
-        bottom: initial;
-    }
-
-    @include m(center) {
-        & > div {
-            margin: auto;
-            margin-bottom: 10px;
-        }
-    }    
-
-    @include m(right) {
-        right: 15px;
-        left: initial;
-    }
-}
-
-.toastr {
-        
-    position: relative;
-    width: 280px;    
-
-    display: block;
-    overflow: hidden;
-    padding: 15px;
-    margin-bottom: 10px;
-
-    background: $nav-menu-bg;    
+    bottom: 20px;
+    right: 5%;
+    background-color: $info;
+    overflow-y: hidden;
     color: white;
 
+
+    @include m(hide) {
+      display: none;
+    }
+
     @include m(info) {
-        background: $info;
+        background-color: $info;
     }
 
     @include m(warning) {
-        background: $warning;
+        background-color: $warning;
     }
     @include m(danger) {
-        background: $danger;
+        background-color: $danger;
     }
     @include m(success) {
-        background: $success;
+        background-color: $success;
     }
 }

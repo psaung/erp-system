@@ -4,6 +4,7 @@ import { delay } from 'redux-saga'
 import * as actions from './../actions/time-actions'
 import * as apiActions from './../actions/api-actions'
 import { loginSuccess, loginFailure } from './../actions/auth-actions'
+import { showLogMsg, hideMsg } from './../actions/app-actions'
 import { getTimeFrame } from './../reducers'
 import { api, timeFrame } from './../services'
 import { fetchData } from './api-saga'
@@ -36,6 +37,9 @@ function* loginUser(fields) {
     }))
   } else {
     yield put(loginFailure('Username and password not match'))
+    yield put(showLogMsg('Username and password not match'))
+    yield call(delay, 3000)
+    yield put(hideMsg())
   }
 }
 
