@@ -14,9 +14,6 @@ export function* getFrames() {
   yield put(actions.receiveTimeFrame(frames))
 }
 
-export function* loginUser(login, requiredFields) {
-}
-
 export function* getRoles() {
   const roles = yield call(api.getRoles)
   // TODO: implement api actions
@@ -26,6 +23,7 @@ export function* getDepartments() {
   const departments = yield call(api.getDepartments)
   yield put(apiActions.responseSuccess(departments)) 
 }
+
 
 function* loginUser(fields) {
   const { username, password } = fields.creds;
@@ -41,7 +39,7 @@ function* loginUser(fields) {
     yield call(delay, 3000)
     yield put(hideMsg())
   }
-}
+} 
 
 export default function* root() {
   yield all([
