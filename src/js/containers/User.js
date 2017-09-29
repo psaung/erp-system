@@ -15,6 +15,8 @@ class User extends Component {
   }
 
   render() {
+    console.log(this.props.api)
+    const { data } = this.props.api
     return (
       <div>
         <Helmet>
@@ -25,7 +27,7 @@ class User extends Component {
           <div className="panel">
             <h3 className="panel__heading">User</h3>
             <div className="panel__body">
-              <UserList users={[]}/>
+              <UserList users={data} />
             </div>
           </div>
           <UserForm />
@@ -35,4 +37,8 @@ class User extends Component {
   }
 }
 
-export default User
+User.propTypes = {
+  api: PropTypes.object.isRequired
+}
+
+export default connect(state => (state))(User)

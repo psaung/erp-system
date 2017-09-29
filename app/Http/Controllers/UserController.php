@@ -15,7 +15,8 @@ class UserController extends ApiController
     public function index()
     {
         //
-        $users = User::all();
+        // $users = User::all();
+        $users = User::orderBy('id')->with('departments:id,name')->get(); 
         // return response()->json(['data' => $users]);
         return $this->showAll($users);
     }
