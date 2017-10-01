@@ -10,4 +10,9 @@ trait AdminActions
       return true;
     }
   }
+
+  protected function errorResponse($message, $code = 401)
+  {
+    return response()->json(['error' => $message, 'code' => $code], $code);
+  }
 }

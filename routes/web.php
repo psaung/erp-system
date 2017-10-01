@@ -34,4 +34,5 @@ $this->post('clogin', 'Auth\customLoginController@login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::get('/check', 'Auth\customLoginController@checkAuth');
+Route::post('/clogout', 'Auth\customLoginController@logout');
