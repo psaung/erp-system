@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $usersQuantity = 5;
         $departmentsQuantity = 10;
+        $this->createAdminUser();
 
         factory(Department::class, $departmentsQuantity)->create();
         factory(User::class, $usersQuantity)->create()->each(
@@ -31,6 +32,23 @@ class DatabaseSeeder extends Seeder
                 //$user->departments()->save($departments);
             }
         );
+    }
+    
+    /*
+     * All of the infromation for admin user are created as the default 
+     * since the database seeeding stage.
+     *
+     * @return void
+     */
+    private function createAdminUser()
+    {
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin123'),
+            'role' => 'admin',
+            'verified' => '1'
+        ]);
     }
 
     private function assignDepartmentForUser($user_id, $department_id) {

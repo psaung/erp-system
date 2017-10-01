@@ -16,7 +16,7 @@ class UserController extends ApiController
     {
         //
         // $users = User::all();
-        $users = User::orderBy('id')->with('departments:id,name')->get(); 
+        $users = User::where('role', '!=', 'admin')->orderBy('id')->with('departments:id,name')->get(); 
         // return response()->json(['data' => $users]);
         return $this->showAll($users);
     }
