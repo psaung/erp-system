@@ -18,16 +18,17 @@ export function requestLogin(creds) {
 }
 
 export function loginSuccess(result) {
-  const { name, role, authenticationToken } = result
+  const { name, authenticationToken, refreshToken, role } = result
   console.log(result)
   return {
     type: LOGIN_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
+    role,
     user: {
       name,
-      role,
-      token_id: authenticationToken 
+      authToken: authenticationToken,
+      refreshToken: refreshToken,
     },
   }
 }

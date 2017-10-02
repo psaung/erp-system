@@ -43,9 +43,9 @@ class CustomLoginController extends Controller
 		
 		try {
 			$response = $client->request('POST', '/oauth/token', ['form_params' => $data]);
-			
-			// TODO: still need to implement error handling
-			$result = json_decode($response->getBody()->getContents());
+            $result = json_decode($response->getBody()->getContents());
+            if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) $user = Auth::user();
+            $result->role = $user ? $user->role : 'employee'; 
 			return response()->json(['success' => true,
 			'data' => $result], $this->successStatus);
 		} catch(RequestException $e) {
@@ -70,8 +70,8 @@ class CustomLoginController extends Controller
 		
 		try {
 			$response = $client->request('POST', '/oauth/token', ['form_params' => $data]);
-			$result = json_decode($response->getBody()->getContents());
-			return response()->json(['success' => true,
+            $result = json_decode($response->getBody()->getContents());
+            return response()->json(['success' => true,
 			'data' => $result], $this->successStatus);
 		} catch(RequestException $e) {
 			$result = json_decode($e->getResponse()->getBody()->getContents());

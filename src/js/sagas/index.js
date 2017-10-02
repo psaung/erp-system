@@ -9,6 +9,8 @@ import { getTimeFrame } from './../reducers'
 import { api, timeFrame } from './../services'
 import { fetchData } from './api-saga'
 
+import { loginUser } from './auth-saga'
+
 export function* getFrames() {
   const frames = yield call(timeFrame.getTimeFrame)
   yield put(actions.receiveTimeFrame(frames))
@@ -23,23 +25,6 @@ export function* getDepartments() {
   const departments = yield call(api.getDepartments)
   yield put(apiActions.responseSuccess(departments)) 
 }
-
-
-function* loginUser(fields) {
-  const { username, password } = fields.creds;
-  if(username === "admin" && password === "admin123") {
-    yield put(loginSuccess({
-      name: username,
-      role: 'admin',
-      authenticationToken: 123456
-    }))
-  } else {
-    yield put(loginFailure('Username and password not match'))
-    yield put(showLogMsg('Username and password not match'))
-    yield call(delay, 3000)
-    yield put(hideMsg())
-  }
-} 
 
 export default function* root() {
   yield all([

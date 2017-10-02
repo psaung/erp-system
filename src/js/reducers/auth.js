@@ -8,8 +8,9 @@ import {
 const initialState = {
   isFetching: false,
   isAuthenticated: false,
-  role: 'user',
-  error: {}
+  error: {},
+  user: {},
+  role: 'employee',
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -25,8 +26,9 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         isFetching: false,
         isAuthenticated: true,
-        name: action.user.name,
-        role: action.user.role,
+        user: action.user,
+        role: action.role,
+        error: {},
       }
     case LOGIN_FAILURE:
       console.log(action)
