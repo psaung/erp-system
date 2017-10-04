@@ -22,9 +22,12 @@ export function* loginUser(fields) {
     },
     body: `email=${username}&password=${password}`
   }
-  // yield put(requestLogin())
   const data = yield call(checkCreds, config)
   if(data.success) {
+    window.localStorage.setItem('access_token', data.data['access_token'])
+    window.localStorage.setItem('refresh_token', data.data['refresh_token'])
+    window.localStorage.setItem('role', data.data['role'])
+    window.localStorage.setItem('user', username)
     yield put(loginSuccess({
       name: username,
       authenticationToken: data.data['access_token'],

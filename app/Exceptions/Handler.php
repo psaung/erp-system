@@ -47,17 +47,31 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        // echo csrf_token();
         /*
+        // echo csrf_token();
         // var_dump($exception);
         var_dump($exception instanceof AuthenticationException);
         // if the exception is AuthenticationException show this
          */
         if($exception instanceof AuthenticationException) 
         {
-            // var_dump($exception);
             return $this->unauthenticated($request, $exception);
         } 
+
+        if($exception instanceof AuthorizationException)
+        {
+            return $this->errorResponse($exception->getMessage(), 403);
+        }
+
+        if($exception instanceof MethodNotAllowedHttpException)
+        {
+            return $this->errorResponse('The specified method for the request is invalid', 405);
+        }
+
+        if($exception instanceof TokenMismatchException)
+        {
+            return $this->errorResponse('Token mismatch', 401);
+        }
 
         // return $this->errorResponse('Unexpected Exception. Try later', 500);
         return parent::render($request, $exception);

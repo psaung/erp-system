@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Lcobucci\JWT\Parser;
+use Illuminate\Support\Facades\DB;
 
 /*
  * This will handy if u use login with Personal Access Token grant type 
+ * The draback of personal access token is persoanal access token has 
+ * no expire time and it will stay forever.
 // use Illuminate\Support\Facades\DB;
 // use Laravel\Passport\Token;
 // use Lcobucci\JWT\Parser;
@@ -32,11 +37,20 @@ class CustomLoginController extends Controller
         $client = new Client([
             'base_uri' => env('BASE_HOST'), 
         ]);
-
+        
+        // you can find password grant type client_id and client_secret
+        // in DB::table('oauth_clients')
+        // DB::table('oauth_clients')->where('2') 
+        
+        /*
+         * $client = DB:table('oauth_clients')->where('2)
+         * $client->id
+         * $client->secret
+         */
 		$data = [
             'username' => request('email'),
             'password' => request('password'),
-            'client_id' => env('PASSWORD_CLIENT_ID'),
+            'client_id' => env('PASSWORD_CLIENT_ID'), // this might be set again if your refresh database migration in env file
             'client_secret' => env('PASSWORD_CLIENT_SECRET'),
             'grant_type' => 'password',
         ];
@@ -131,16 +145,54 @@ class CustomLoginController extends Controller
      * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function checkAuth()
+    public function checkAuth(Request $request)
     {
         $value = $request->bearerToken();
-        $id = (new Parser())->parse($value)->getClaim('jti');
 
-
-        if(Auth::check()) {
-            return response()->json(['success' => true], $this->successStatus);
-        } else {
+        if(is_null($value)) {
+            return response()->json(['error' => 'There is no Bearer Token in Authorization Header'], 401);
+        }
+        
+        try {
+            $token= (new Parser())->parse($value);
+        } catch(Exception $e) {
             return response()->json(['error' => 'Invalid Authentication Token'], 401);
         }
+
+
+        try {
+            $id = $token->getClaim('jti');
+            $token = DB::table('oauth_access_tokens')->find($id);
+
+            if(is_null($token)) {
+                return response()->json(['error' => 'Access Token Mulfunctioned'], 401);
+            }
+
+            $expires_at = $token->expires_at;
+
+            if($this->checkExpiration($expires_at)) {
+                return response()->json(['error' => 'Token Expired'], 403);
+            } else {
+                return response()->json(['success'  => true], 200);
+            }
+        } catch(Exception $e) {
+            return response()->json(['error' => 'Access Token Mulfunctioned'], 401);
+        } 
+    }
+
+    /*
+     * 
+     * @param date time
+     * @return Boolean
+     */ 
+    private function checkExpiration($time) 
+    {
+        
+        $time = Carbon::parse($time);
+        $now = Carbon::now();
+        if($time->lte($now)) {
+            return true;
+        }
+        return false;
     }
 }
