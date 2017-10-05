@@ -3,13 +3,56 @@ import { delay } from 'redux-saga'
 import fetch from 'isomorphic-fetch'
 
 import { showLogMsg, hideMsg } from './../actions/app-actions'
-import { loginSuccess, loginFailure, requestLogin } from './../actions/auth-actions'
+import { loginSuccess, loginFailure, authorizationSuccess, authorizationFailure } from './../actions/auth-actions'
 import config from './../config'
 
 export function checkCreds(conn) {
   const endPoint = 'clogin'
   return fetch(config.host + endPoint, conn)
           .then( response => response.json())
+}
+
+export function checkToken(conf) {
+  const endPoint = 'check'
+  return fetch(config.host + endPoint, conf)
+          .then( response => response.json())
+}
+
+export function* checkAuthToken() {
+  const token = window.localStorage.getItem('access_token')
+  if(!(token)) {
+    yield put(authorizationFailure('There is no access token'))
+    yield put(showLogMsg('There is no token.You have to login'))
+    yield call(delay, 3000)
+    yield put(hideMsg())
+  } else {
+    const conf = {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    }
+    const data = yield call(checkToken, conf)
+    console.log(data)
+    if(data.success) {
+      // authorization ok
+      yield put(authorizationSuccess())
+    } else {
+      // authorization not ok
+      // get rid token stuff in local storage
+      window.localStorage.removeItem('access_token')
+      window.localStorage.removeItem('refresh_token')
+      window.localStorage.removeItem('role')
+      window.localStorage.removeItem('user')
+
+      // show the error message with toastr
+      yield put(authorizationFailure(data.error.message))
+      yield put(showLogMsg(data.error.message))
+      yield call(delay, 3000)
+      yield put(hideMsg())
+    }
+  }
 }
 
 export function* loginUser(fields) {

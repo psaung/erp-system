@@ -3,6 +3,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
+  AUTHORIZATION_REQUEST,
+  AUTHORIZATION_SUCCESS,
+  AUTHORIZATION_FAILURE,
 } from './../constants/auth-types'
 
 const initialState = {
@@ -37,6 +40,24 @@ export default function reducer(state = initialState, action = {}) {
         isFetching: false,
         isAuthenticated: false,
         error: action.error
+      }
+    case AUTHORIZATION_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      }
+    case AUTHORIZATION_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        isAuthenticated: true,
+      }
+    case AUTHORIZATION_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        isAuthenticated: false,
+        error: action.error,
       }
     case LOGOUT_SUCCESS:
       return { 

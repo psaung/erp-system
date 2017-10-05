@@ -49,3 +49,25 @@ export function logoutSuccess() {
     isAuthenticated: false,
   }
 }
+
+export function checkAuth() {
+  return {
+    type: AUTHORIZATION_REQUEST,
+    isFetching: true,
+  }
+}
+
+export function authorizationSuccess() {
+  return {
+    type: AUTHORIZATION_SUCCESS,
+    isFetching: false,
+  }
+}
+
+export function authorizationFailure(error) {
+  return {
+    type: AUTHORIZATION_FAILURE,
+    isFetching: false,
+    error,
+  }
+}

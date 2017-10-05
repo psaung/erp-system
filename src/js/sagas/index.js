@@ -5,11 +5,20 @@ import * as actions from './../actions/time-actions'
 import * as apiActions from './../actions/api-actions'
 import { loginSuccess, loginFailure } from './../actions/auth-actions'
 import { showLogMsg, hideMsg } from './../actions/app-actions'
+
 import { getTimeFrame } from './../reducers'
 import { api, timeFrame } from './../services'
 import { fetchData } from './api-saga'
+import {
+  LOGIN_REQUEST,
+  AUTHORIZATION_REQUEST,
+} from './../constants/auth-types'
+ 
 
-import { loginUser } from './auth-saga'
+import { 
+  loginUser,
+  checkAuthToken, 
+} from './auth-saga'
 
 export function* getFrames() {
   const frames = yield call(timeFrame.getTimeFrame)
@@ -32,5 +41,6 @@ export default function* root() {
     fork(getDepartments),
     fork(fetchData)
   ])
-  yield takeEvery('LOGIN_REQUEST', loginUser)
+  yield takeEvery(LOGIN_REQUEST, loginUser)
+  yield takeEvery(AUTHORIZATION_REQUEST, checkAuthToken)
 }

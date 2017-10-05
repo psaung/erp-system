@@ -124,13 +124,24 @@ class CustomLoginController extends Controller
     public function logout(Request $request)
     {
         $value= $request->bearerToken();
+
+        if(is_null($value)) {
+            return response()->json(['success' => false, 'error' => 'There is no Bearer Token in Authorization Header'], 401);
+        }
+
         $id = (new Parser())->parse($value)->getClaim('jti');
 
         // prefer delete rather than revoke becoz it completely all of the access token from
         // oauth_token_users table.
-        $token = DB::table('oauth_access_tokens')->where('id', '=' , $id)->delete();
+        $token = DB::table('oauth_access_tokens')->find($id);
             // ->update(['revoked' => true]);
         
+        if(is_null($token)) {
+            return response()->json(['success' => false, 'error' => 'Access Token Mulfunctioned'], 401);
+        }
+
+        $token->delete();
+       
         $request->session()->flush();
 
         $request->session()->regenerate();
@@ -150,13 +161,13 @@ class CustomLoginController extends Controller
         $value = $request->bearerToken();
 
         if(is_null($value)) {
-            return response()->json(['error' => 'There is no Bearer Token in Authorization Header'], 401);
+            return response()->json(['success' => false, 'error' => 'There is no Bearer Token in Authorization Header'], 401);
         }
         
         try {
             $token= (new Parser())->parse($value);
         } catch(Exception $e) {
-            return response()->json(['error' => 'Invalid Authentication Token'], 401);
+            return response()->json(['success' => false, 'error' => 'Invalid Authentication Token'], 401);
         }
 
 
@@ -165,18 +176,18 @@ class CustomLoginController extends Controller
             $token = DB::table('oauth_access_tokens')->find($id);
 
             if(is_null($token)) {
-                return response()->json(['error' => 'Access Token Mulfunctioned'], 401);
+                return response()->json(['success' => false, 'error' => 'Access Token Mulfunctioned'], 401);
             }
 
             $expires_at = $token->expires_at;
 
             if($this->checkExpiration($expires_at)) {
-                return response()->json(['error' => 'Token Expired'], 403);
+                return response()->json(['success' => false, 'error' => 'Token Expired'], 403);
             } else {
                 return response()->json(['success'  => true], 200);
             }
         } catch(Exception $e) {
-            return response()->json(['error' => 'Access Token Mulfunctioned'], 401);
+            return response()->json(['success' => false, 'error' => 'Access Token Mulfunctioned'], 401);
         } 
     }
 
