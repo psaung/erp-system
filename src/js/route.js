@@ -4,14 +4,14 @@ import {
   Login,
   Register,
   Error404,
-  AdminPanel,
-  UnAuthorize,
+  AdminRoot,
 } from './containers'
 import * as authActions from './actions/auth-actions'
 
 export default(store) => {
   const { dispatch } = store
-
+  
+  /*
   const customRender = (props) => {
     console.log(store.getState())
     console.log('cutom render')
@@ -27,14 +27,15 @@ export default(store) => {
       // if not render the UnAuthorize component
       return <UnAuthorize {...props} />
     }
-  }
+  } */
 
   return (
     <Switch>
-      <Route path="/admin" render={customRender} />
+      <Route path="/admin" component={AdminRoot} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route component={Error404}/>
     </Switch>
   )
+
 }

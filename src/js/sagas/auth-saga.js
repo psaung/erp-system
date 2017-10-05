@@ -20,6 +20,7 @@ export function checkToken(conf) {
 
 export function* checkAuthToken() {
   const token = window.localStorage.getItem('access_token')
+  console.log(token)
   if(!(token)) {
     yield put(authorizationFailure('There is no access token'))
     yield put(showLogMsg('There is no token.You have to login'))
@@ -78,7 +79,7 @@ export function* loginUser(fields) {
       role: data.data['role'],
     }))
   } else {
-    yield put(loginFailure(data.error.message))
+    yield put(loginFailure(data.errormessage))
     yield put(showLogMsg(data.error.message))
     yield call(delay, 3000)
     yield put(hideMsg())

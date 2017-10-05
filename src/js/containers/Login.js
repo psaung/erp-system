@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as authActions from './../actions/auth-actions'
 
 class Login extends Component {
@@ -57,13 +57,13 @@ class Login extends Component {
             </div>
             <div className="form-group">
             </div>
-            <button onClick={ e=> {
+            <input type="submit" onClick={ e=> {
               e.preventDefault();
               this.login(username.value, password.value)
               username.value = ""
               password.value = ""
-            }} className="btn btn--success btn--rounded">Login</button>
-            <input type="reset" value="Cancel" className="btn btn--warning btn--rounded"/>
+            }} className="btn btn--success btn--rounded" value="Login" />
+            <input type="reset" value="Cancel" className="btn btn--warning btn--rounded" />
           </form>
         </div>
       </div>

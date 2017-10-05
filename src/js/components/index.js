@@ -1,6 +1,7 @@
 export CommentBox from './CommentBox'
 export Nav from './Nav'
 export Header from './Header'
+export Loader from './Loader'
 export Toastr from './Toastr/Toastr'
 export UserSetting from './UserSetting'
 export TimeCardList from './TimeCardList'
@@ -17,3 +18,4 @@ export LeaveItem from './Leave/LeaveItem'
 
 export UserList from './User/UserList'
 export UserForm from './User/UserForm'
+

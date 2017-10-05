@@ -5,19 +5,21 @@ import PropTypes from 'prop-types'
 
 import DevTools from './../DevTools'
 import { Toastr } from './../../components'
+import App from './../App'
 
 class Root extends Component {
   render() {
     const { store, router } = this.props
-
+    console.log(this.props)
     return (
       <Provider store={store}>
         <div className="full-height-container">
-          <HashRouter>
-            {router(store)}
-          </HashRouter>
-          <DevTools />
-          <Toastr error ={store.getState().app.message} show={store.getState().app.showLog} />
+          <App>
+            <HashRouter>
+              {router(store)}
+            </HashRouter>
+            <DevTools />
+          </App>
         </div>
       </Provider>
     )

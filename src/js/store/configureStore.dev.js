@@ -14,7 +14,7 @@ export default function configureStore(initialState) {
     compose(
       applyMiddleware(
         sagaMiddleware,
-        createLogger()
+//        createLogger()
       ),
       DevTools.instrument()
     )

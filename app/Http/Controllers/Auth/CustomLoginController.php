@@ -161,13 +161,13 @@ class CustomLoginController extends Controller
         $value = $request->bearerToken();
 
         if(is_null($value)) {
-            return response()->json(['success' => false, 'error' => 'There is no Bearer Token in Authorization Header'], 401);
+            return response()->json(['success' => false, 'error' => [ 'message' => 'There is no Bearer Token in Authorization Header'] ], 401);
         }
         
         try {
             $token= (new Parser())->parse($value);
         } catch(Exception $e) {
-            return response()->json(['success' => false, 'error' => 'Invalid Authentication Token'], 401);
+            return response()->json(['success' => false, 'error' => [ 'message' => 'Invalid Authentication Token'] ], 401);
         }
 
 
@@ -176,18 +176,18 @@ class CustomLoginController extends Controller
             $token = DB::table('oauth_access_tokens')->find($id);
 
             if(is_null($token)) {
-                return response()->json(['success' => false, 'error' => 'Access Token Mulfunctioned'], 401);
+                return response()->json(['success' => false, 'error' => [ 'message' => 'Access Token Mulfunctioned' ] ], 401);
             }
 
             $expires_at = $token->expires_at;
 
             if($this->checkExpiration($expires_at)) {
-                return response()->json(['success' => false, 'error' => 'Token Expired'], 403);
+                return response()->json(['success' => false, 'error' => [ 'message' => 'Token Expired'] ], 401);
             } else {
                 return response()->json(['success'  => true], 200);
             }
         } catch(Exception $e) {
-            return response()->json(['success' => false, 'error' => 'Access Token Mulfunctioned'], 401);
+            return response()->json(['success' => false, 'error' => [ 'message' => 'Access Token Mulfunctioned'] ], 401);
         } 
     }
 
