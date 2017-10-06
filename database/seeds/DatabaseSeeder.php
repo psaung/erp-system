@@ -1,6 +1,9 @@
 <?php
 use App\User;
 use App\Department;
+use App\Expense;
+use App\Leave;
+use App\Leavelog;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -18,10 +21,17 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         User::truncate();
         Department::truncate();
+        Expense::truncate();
+        Leave::truncate();
+        Leavelog::truncate();
         DB::table('department_user')->truncate();
 
         $usersQuantity = 5;
         $departmentsQuantity = 10;
+        $expenseQuantity = 10;
+        $LeaveQuantity = 3;
+        $LeaveLogQuantity = 20;
+
         $this->createAdminUser();
 
         factory(Department::class, $departmentsQuantity)->create();
@@ -32,6 +42,9 @@ class DatabaseSeeder extends Seeder
                 //$user->departments()->save($departments);
             }
         );
+        factory(Expense::class, $expenseQuantity)->create();
+        factory(Leave::class, $LeaveQuantity)->create();
+        factory(Leavelog::class, $LeaveLogQuantity)->create();
     }
     
     /*
@@ -50,7 +63,13 @@ class DatabaseSeeder extends Seeder
             'verified' => '1'
         ]);
     }
-
+    
+    /*
+     * All user must have departments except super admin and General Manager. 
+     * Set department for each users.
+     *
+     * @return void
+     */ 
     private function assignDepartmentForUser($user_id, $department_id) {
         DB::table('department_user')->insert([
             'user_id' => $user_id,

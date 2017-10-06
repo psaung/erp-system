@@ -2,6 +2,10 @@
 
 use App\User;
 use App\Department;
+use App\Expense;
+use App\Leave;
+use App\Leavelog;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +37,35 @@ $factory->define(Department::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word,
         'description' => $faker->paragraph(1),
+    ];
+});
+
+$factory->define(Expense::class, function (Faker\Generator $faker) {
+    return [
+        'department_id' =>  Department::all()->random()->id,
+        'time' => $faker->dateTimeBetween('-3 months', 'now'),
+        'reason' => $faker->word,
+        'cost' => $faker->numberBetween(100, 1000),
+    ];
+});
+
+$factory->define(Leave::class, function (Faker\Generator $faker) {
+    $y = Carbon::now()->year;
+    return [
+        'user_id' =>  User::all()->random()->id,
+        'year' => $faker->numberBetween($y-1, $y),
+        'paid' => $faker->numberBetween(5, 10),
+        'medical' => $faker->numberBetween(5, 10),
+    ];
+});
+
+$factory->define(Leavelog::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' =>  User::all()->random()->id,
+        'time' => $faker->dateTimeBetween('-3 months', 'now'),
+        'reason' => $faker->word,
+        'type' => $faker->randomElement([Leavelog::MEDICAL, Leavelog::PAID]),
+        'period' => $faker->randomElement([Leavelog::HALF_DAY, Leavelog::FULL_DAY]),
     ];
 });
 
