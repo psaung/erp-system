@@ -1,14 +1,9 @@
-import { take, put, call, fork, select, takeEvery, all } from 'redux-saga/effects'
+import { take, put, call, fork, select, takeEvery, takeLatest, all } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
 
-import * as actions from './../actions/time-actions'
-import * as apiActions from './../actions/api-actions'
-import { loginSuccess, loginFailure } from './../actions/auth-actions'
-import { showLogMsg, hideMsg } from './../actions/app-actions'
+import { api } from './../services'
+import { fetchData, fetchAllResources } from './api-saga'
 
-import { getTimeFrame } from './../reducers'
-import { api, timeFrame } from './../services'
-import { fetchData } from './api-saga'
 import {
   LOGIN_REQUEST,
   AUTHORIZATION_REQUEST,
@@ -16,48 +11,77 @@ import {
 
 import {
   LOAD_USER, 
+  API_GET_REQUEST,
+  API_GET_SINGLE_RESOURCE_REQUEST,
+  API_PUT_REQUEST,
+  API_DELETE_REQUEST,
+  API_POST_REQUEST,
 } from './../constants/api-types'
- 
 
 import { 
   loginUser,
   checkAuthToken, 
 } from './auth-saga'
 
-export function* getFrames() {
-  const frames = yield call(timeFrame.getTimeFrame)
-  yield put(actions.receiveTimeFrame(frames))
+function* fetchEntity(entity, apiFn, params) {
+  yield put(entity.request(params))
+  const { response, error } = yield call(apiFn,params)
+  if(response)
+    yield put(entity.success(params, response))
+  else
+    yield put(entity.failure(params, error))
 }
 
-export function* getRoles() {
-  const roles = yield call(api.getRoles)
-  // TODO: implement api actions
+/* get all of the entities */
+function* fetchResources() {
+  while(true) {
+    const { endpoint, params } = yield take(API_GET_REQUEST)
+    // 
+  }
 }
 
-export function* getDepartments() {
-  const departments = yield call(api.getDepartments)
-  yield put(apiActions.responseSuccess(departments)) 
+/* get single entity */
+function* fetchSingleResource() {
+  while(true) {
+    const { endpoint, params } = yield take(API_GET_SINGLE_RESOURCE_REQUEST)
+    //
+  }
+}
+
+function* saveResource() {
+  while(true) {
+    const { endpoint, params } = yield take(API_POST_REQUEST)
+    // 
+  }
+}
+
+function* updateResource() {
+  while(true) {
+    const { endpoint, params } = yield take(API_PUT_REQUEST)
+    // 
+  }
+}
+
+function* deleteResource() {
+  while(true) {
+    const { endpoint, params } = yield take(API_DELETE_REQUEST)
+    // 
+  }
 }
 
 function* watchLoadUserPage() {
   while(true) {
-    const data = yield take(LOAD_USER)
-    yield fork(fetchData)
-  }
-}
-
-function* watchLoadDepartmentUserPage() {
-  while(true) {
-    // const data = yield take(LOAD_
+    const { b } = yield take(LOAD_USER)
+    yield fork(fetchData, b)
   }
 }
 
 export default function* root() {
   yield all([
-    fork(getFrames),
     // fork(getDepartments),
-    fork(watchLoadUserPage)
+    // fork(watchLoadUserPage)
+    fork(fetchAllResources)
   ])
   yield takeEvery(LOGIN_REQUEST, loginUser)
-  yield takeEvery(AUTHORIZATION_REQUEST, checkAuthToken)
+  yield takeLatest(AUTHORIZATION_REQUEST, checkAuthToken)
 }

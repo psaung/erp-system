@@ -12,7 +12,9 @@ class App extends Component {
     return(
       <div>
         { isFetching && 
-          <Loader />
+          <div className="loader__container">
+            <Loader text="Check Authorization"/>
+          </div>
         }
         {this.props.children}
         <Toastr error={message} show={showLog} />

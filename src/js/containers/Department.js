@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
+import { fetchResources } from './../actions/api-actions'
 import { 
   Header,
   DepartmentList,
   DepartmentForm,
+  Loader,
 } from './../components'
 
 class Department extends Component {
@@ -14,8 +16,12 @@ class Department extends Component {
     super()
   }
 
+  componentWillMount() {
+    this.props.fetchResources('departments')
+  }
+
   render() {
-    const { api } = this.props
+    const { result, isFetching } = this.props.api
     return (
       <div>
         <Helmet>
@@ -23,13 +29,19 @@ class Department extends Component {
         </Helmet>
         <Header heading="Department" />
         <main className="l-main">
-          <div className="panel">
-            <h3 className="panel__heading">Department</h3>
-            <div className="panel__body">
-              <DepartmentList departments={api}/>
+          { isFetching ? 
+          <Loader text="Loading Departments" />
+          :
+            <div>
+              <div className="panel">
+                <h3 className="panel__heading">Department</h3>
+                <div className="panel__body">
+                  <DepartmentList departments={result}/>
+                </div>
+              </div>
+              <DepartmentForm />
             </div>
-          </div>
-          <DepartmentForm />
+          } 
         </main>
       </div>
     ) 
@@ -37,9 +49,11 @@ class Department extends Component {
 }
 
 Department.propTypes = {
-  api: PropTypes.array.isRequired
+  api: PropTypes.object.isRequired,
+  fetchResources: PropTypes.func.isRequired,
 }
 
 export default connect(
-  state => (state)
+  state => (state),
+  { fetchResources }
 )(Department)

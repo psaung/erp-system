@@ -21,8 +21,8 @@
   @include m(arrowSector) {
     color: $info-text-color;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: calc(50% - 10px);
+    left: calc(50% - 44px);
     text-align: center;
     z-index: 100000;
     @extend %clearfix;

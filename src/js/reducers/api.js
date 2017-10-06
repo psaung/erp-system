@@ -8,6 +8,7 @@ import {
   API_RESPONSE_SUCCESS,
   API_REQUEST_FAILURE,
   API_GET_SINGLE_RESOURCE_REQUEST,
+  FLUSH_API_DATA,
 } from './../constants/api-types' 
 
 const initialState =  {
@@ -22,7 +23,8 @@ export default function reducer(state = initialState, action = {}) {
     case API_RESPONSE_SUCCESS:
       return {
         ...state,
-        result: action.result.data,
+        isFetching: false,
+        result: action.result.data || [],
       }
     case API_GET_REQUEST:
       return {
@@ -34,9 +36,9 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         isFetching: false,
-        error: actions.error
+        error: action.error
       }
-    case 'FLUSH_DATA':
+    case FLUSH_API_DATA:
       return initialState 
     default: 
       return state

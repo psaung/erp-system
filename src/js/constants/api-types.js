@@ -6,6 +6,7 @@ export const API_REQUEST_FAILURE = 'API_REQUEST_FAILURE'
 export const API_POST_REQUEST = 'API_POST_REQUEST'
 export const API_PUT_REQUEST = 'API_PUT_REQUEST'
 export const API_DELETE_REQUEST = 'API_DELETE_REQUEST'
+export const FLUSH_API_DATA = 'FLUSH_API_DATA'
 
 /* action type */
 export const REQUEST = 'REQUEST'

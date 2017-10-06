@@ -35,7 +35,7 @@ class CustomLoginController extends Controller
     public function login()
     {
         $client = new Client([
-                'base_uri' => env('BASE_HOST'), 
+            'base_uri' => env('BASE_HOST'), 
         ]);
         
         // you can find password grant type client_id and client_secret
@@ -62,7 +62,7 @@ class CustomLoginController extends Controller
             $result->role = $user ? $user->role : 'employee'; 
 			return response()->json(['success' => true,
 			'data' => $result], $this->successStatus);
-		} catch(RequestException $e) {
+        } catch(RequestException $e) {
 			$result = json_decode($e->getResponse()->getBody()->getContents());
 			return response()->json(['success' => false,
 			'error' => $result], 401);

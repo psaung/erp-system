@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 
 import { connect } from 'react-redux'
-import { loadUser } from './../actions/api-actions'
+import { fetchResources, loadUser } from './../actions/api-actions'
 import {
   Header,
   UserList,
   UserForm,
+  Loader,
 } from './../components'
 
 class User extends Component {
@@ -16,12 +17,12 @@ class User extends Component {
   }
 
   componentWillMount() {
-    this.props.loadUser('puss');
+    this.props.fetchResources('users')
   }
 
   render() {
     console.log(this.props.api)
-    const { result } = this.props.api
+    const { result, isFetching } = this.props.api
     if(!result) {
       return <h1>Loading User</h1>
     }
@@ -32,13 +33,21 @@ class User extends Component {
         </Helmet>
         <Header heading="User" />
         <main className="l-main">
-          <div className="panel">
-            <h3 className="panel__heading">User</h3>
-            <div className="panel__body">
-              <UserList users={result} />
-            </div>
+          { isFetching ? 
+          <div style={{width: '100%', minHeight: '300px'}}>
+            <Loader text="Loading Users"/>
           </div>
-          <UserForm />
+          :
+          <div>
+            <div className="panel">
+              <h3 className="panel__heading">User</h3>
+              <div className="panel__body">
+                <UserList users={result} />
+              </div>
+            </div>
+            <UserForm />
+          </div>
+          }
         </main>
       </div>
     )
@@ -48,6 +57,7 @@ class User extends Component {
 User.propTypes = {
   api: PropTypes.object.isRequired,
   loadUser: PropTypes.func.isRequired,
+  fetchResources: PropTypes.func.isRequired,
 }
 
-export default connect(state => (state), {loadUser})(User)
+export default connect(state => (state), {loadUser, fetchResources})(User)
