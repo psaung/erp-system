@@ -14,9 +14,12 @@ class AdminRoot extends Component {
   }
   
   componentWillReceiveProps(nextProps) {
- 
+    if(nextProps.location.pathname !== this.props.location.pathname) {
+      // dispatch an api flush data action 
+      console.log('route changed')
+    }
   }
-
+  
   componentWillMount() {
     if(!this.props.auth.isAuthenticated) {
       this.props.checkAuth() 
@@ -46,6 +49,7 @@ AdminRoot.propTypes = {
   checkAuth: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 export default connect(

@@ -35,7 +35,7 @@ class CustomLoginController extends Controller
     public function login()
     {
         $client = new Client([
-            'base_uri' => env('BASE_HOST'), 
+                'base_uri' => env('BASE_HOST'), 
         ]);
         
         // you can find password grant type client_id and client_secret
@@ -182,6 +182,7 @@ class CustomLoginController extends Controller
             $expires_at = $token->expires_at;
 
             if($this->checkExpiration($expires_at)) {
+                // $token->delete();
                 return response()->json(['success' => false, 'error' => [ 'message' => 'Token Expired'] ], 401);
             } else {
                 return response()->json(['success'  => true], 200);

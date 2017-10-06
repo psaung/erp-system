@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 
 import { connect } from 'react-redux'
+import { loadUser } from './../actions/api-actions'
 import {
   Header,
   UserList,
@@ -14,9 +15,16 @@ class User extends Component {
     super()
   }
 
+  componentWillMount() {
+    this.props.loadUser('puss');
+  }
+
   render() {
     console.log(this.props.api)
-    const { data } = this.props.api
+    const { result } = this.props.api
+    if(!result) {
+      return <h1>Loading User</h1>
+    }
     return (
       <div>
         <Helmet>
@@ -27,7 +35,7 @@ class User extends Component {
           <div className="panel">
             <h3 className="panel__heading">User</h3>
             <div className="panel__body">
-              <UserList users={data} />
+              <UserList users={result} />
             </div>
           </div>
           <UserForm />
@@ -38,7 +46,8 @@ class User extends Component {
 }
 
 User.propTypes = {
-  api: PropTypes.object.isRequired
+  api: PropTypes.object.isRequired,
+  loadUser: PropTypes.func.isRequired,
 }
 
-export default connect(state => (state))(User)
+export default connect(state => (state), {loadUser})(User)

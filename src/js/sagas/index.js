@@ -13,6 +13,10 @@ import {
   LOGIN_REQUEST,
   AUTHORIZATION_REQUEST,
 } from './../constants/auth-types'
+
+import {
+  LOAD_USER, 
+} from './../constants/api-types'
  
 
 import { 
@@ -35,11 +39,24 @@ export function* getDepartments() {
   yield put(apiActions.responseSuccess(departments)) 
 }
 
+function* watchLoadUserPage() {
+  while(true) {
+    const data = yield take(LOAD_USER)
+    yield fork(fetchData)
+  }
+}
+
+function* watchLoadDepartmentUserPage() {
+  while(true) {
+    // const data = yield take(LOAD_
+  }
+}
+
 export default function* root() {
   yield all([
     fork(getFrames),
-    fork(getDepartments),
-    fork(fetchData)
+    // fork(getDepartments),
+    fork(watchLoadUserPage)
   ])
   yield takeEvery(LOGIN_REQUEST, loginUser)
   yield takeEvery(AUTHORIZATION_REQUEST, checkAuthToken)
