@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Department;
 use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
@@ -14,4 +15,9 @@ class Expense extends Model
         'voucher',
         'cost',
     ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

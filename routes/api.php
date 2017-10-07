@@ -22,6 +22,10 @@ Route::group(['middleware' => 'auth:api'], function (){
     Route::resource('leaves', 'LeaveController');
     Route::resource('expenses', 'ExpenseController');
     Route::resource('leavelogs', 'LeavelogController');
+    Route::resource('payrolls', 'PayrollController');
+    Route::resource('timeframes', 'TimeframeController');
+    Route::resource('tasks', 'TaskController');
+    Route::resource('salaries', 'SalaryController');
     Route::resource('users', 'UserController', ['except' => ['create', 'edit']]);
 });
 

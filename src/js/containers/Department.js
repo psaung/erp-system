@@ -17,7 +17,7 @@ class Department extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchResources('departments')
+    this.props.fetchResources('timeframes')
   }
 
   render() {

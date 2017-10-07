@@ -3,6 +3,10 @@
 namespace App;
 
 use App\Department;
+use App\Timeframe;
+use App\Payroll;
+use App\Salary;
+use App\Task;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -84,6 +88,26 @@ class User extends Authenticatable
     public function departments()
     {
         return $this->belongsToMany(Department::class);
+    }
+
+    public function timeframes()
+    {
+        return $this->hasMany(Timeframe::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function salaries()
+    {
+        return $this->hasMany(Salary::class);
+    }
+
+    public function payrolls()
+    {
+        return $this->hasMany(Payroll::class);
     }
 
     public static function generateVerificationCode()

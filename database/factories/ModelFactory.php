@@ -5,6 +5,11 @@ use App\Department;
 use App\Expense;
 use App\Leave;
 use App\Leavelog;
+use App\Payroll;
+use App\Salary;
+use App\Task;
+use App\Timeframe;
+
 use Carbon\Carbon;
 
 /*
@@ -49,6 +54,7 @@ $factory->define(Expense::class, function (Faker\Generator $faker) {
     ];
 });
 
+/* 
 $factory->define(Leave::class, function (Faker\Generator $faker) {
     $y = Carbon::now()->year;
     return [
@@ -57,7 +63,7 @@ $factory->define(Leave::class, function (Faker\Generator $faker) {
         'paid' => $faker->numberBetween(5, 10),
         'medical' => $faker->numberBetween(5, 10),
     ];
-});
+}); */
 
 $factory->define(Leavelog::class, function (Faker\Generator $faker) {
     return [
