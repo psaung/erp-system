@@ -76,7 +76,7 @@ class UserController extends ApiController
      */
     public function edit($id)
     {
-        //
+        // return $this->showOne($user);
     }
 
     /**
