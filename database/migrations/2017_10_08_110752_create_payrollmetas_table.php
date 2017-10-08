@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTimeframesTable extends Migration
+class CreatePayrollmetasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateTimeframesTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('timeframes', function (Blueprint $table) {
+        Schema::create('payrollmetas', function (BluePrint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->string('reason');
+            $table->string('detail')->nullable();
+            $table->string('type'); // 
+            $table->date('date');
+            $table->integer('value');
 
-            $table->date('date'); // Carbon::createFromFormat('m-d', $dateVariable)
-            $table->time('in')->nullable(); 
-            $table->time('out')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -33,6 +34,6 @@ class CreateTimeframesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timeframes');
+        Schmea::dropIfExists('payrollmetas');
     }
 }

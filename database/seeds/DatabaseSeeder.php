@@ -8,6 +8,7 @@ use App\Salary;
 use App\Payroll;
 use App\Task;
 use App\Timeframe;
+use App\Payrollmeta;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -55,6 +56,7 @@ class DatabaseSeeder extends Seeder
                 $this->assignLeavesForUser($user->id);
                 $this->assignTaskForUser($user->id);
                 $this->assignTimeFrameForUser($user->id);
+                $this->assignPayRollsMeta($user->id);
                 $this->assignPayRollsForUser($user->id);
                 //$user->departments()->save($departments);
             }
@@ -153,6 +155,27 @@ class DatabaseSeeder extends Seeder
                     'date' => $ddate,
                     'in' => Carbon::createFromFormat('H-m', '9-00')->format('H:i:s'),
                     'out' => Carbon::createFromFormat('H-m', '17-30')->format('H:i:s'),
+                ]);
+            }
+            $idx = $idx + 1;
+        }
+    }
+
+    private function assignPayRollsMeta($user_id) {
+        $type_arr = [ Payrollmeta::PENALTY, Payrollmeta::BONUS, Payrollmeta::HEALTHCARE, Payrollmeta::OVERTIME, Payrollmeta::TRANSPORTATION ];
+        $firstWeekStart = Carbon::now('Asia/Rangoon')->startOfWeek()->subDays(7);
+        $loop= 2;
+        $idx = 0;
+        while($idx < $loop) {
+            for($i = 0; $i < 5; $i++) {
+                $ddate = $firstWeekStart->addDay($i + ($idx*7))->toDateString();
+                DB::table('payrollmetas')->insert([
+                    'user_id' => $user_id,
+                    'date' => $ddate,
+                    'reason' => $this->faker->word,
+                    'detail' => $this->faker->paragraph(1),
+                    'type' => $this->faker->randomElement($type_arr),
+                    'value' => $this->faker->numberBetween(0, 20),
                 ]);
             }
             $idx = $idx + 1;
