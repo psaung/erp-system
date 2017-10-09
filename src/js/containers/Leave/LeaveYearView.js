@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
-import { fetchResources } from './../actions/api-actions'
+import { fetchResources } from './../../actions/api-actions'
 import {
 	Header,
 	LeaveCalendar,
   Loader,
-} from './../components'
+} from './../../components'
 
-class Leave extends Component {
+class LeaveYearView extends Component {
   constructor() {
     super()
   }
@@ -49,7 +49,7 @@ class Leave extends Component {
   }
 }
 
-Leave.propTypes = {
+LeaveYearView.propTypes = {
   api: PropTypes.object.isRequired,
   fetchResources: PropTypes.func.isRequired,
 }
@@ -57,4 +57,4 @@ Leave.propTypes = {
 export default connect(
   state => (state),
   { fetchResources }
-)(Leave)
+)(LeaveYearView)

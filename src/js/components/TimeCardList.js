@@ -1,28 +1,29 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { getAllTimeFrame }  from './../actions/time-actions'
-import { connect } from 'react-redux'
-
-
 class TimeCardList extends Component {
   render() {
-    console.log(this.props)
-    const { frames } = this.props
+    const { data } = this.props
     return (
-      <div style={{ height: '1300px' }}>
-      { frames.length > 0 && 
+      <div>
+      { data.length > 0 ? 
         <ul>
-          {frames.map(frame => 
-            <li key={frame.id}>
-              {frame.name}
-              {''}
-              {frame.department}
-              {''}
-              {frame.id}
+          {data.map(frame => 
+            <li key={frame.id} style={{borderBottom: '1px solid #ccc', paddingBottom: '10px'}}>
+              {frame.user_id}
+              <br />
+              {frame.date}
+              <br />
+              {frame.in}
+              <br />
+              {frame.out}
             </li>
           )}
         </ul>
+        :
+        <div>
+          There is no items
+        </div>
       }
       </div>
     )
@@ -30,10 +31,7 @@ class TimeCardList extends Component {
 }
 
 TimeCardList.propTypes = {
-  getAllTimeFrame: PropTypes.func
+  data: PropTypes.array.isRequired,
 }
 
-export default connect(
-  state => (state),
-  {getAllTimeFrame}
-)(TimeCardList)
+export default TimeCardList;

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 class LeaveCalendarItem extends Component { 
   render() {
-    const { day, month, year } = this.props
+    const { month, year, fullMonth } = this.props
     return (
       <div className="calendar__item ta-center">
-        <h3>{day}</h3>
+        <h3>{fullMonth}</h3>
         <div className="calendar__ion-group">
           <i className="calendar__ion-icon ion-man" /> x 
           <span>N/A</span>
@@ -24,9 +24,9 @@ class LeaveCalendarItem extends Component {
 }
 
 LeaveCalendarItem.propTypes = {
-  day: PropTypes.string.isRequired,
-  month: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  month: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  fullMonth: PropTypes.string.isRequired,
 }
 
 export default LeaveCalendarItem

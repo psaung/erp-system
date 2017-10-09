@@ -7,6 +7,7 @@ import {
   TimeCard,
   Department,
   Leave,
+  LeaveMonth,
   Role,
   Finance,
   User,

@@ -1,0 +1,45 @@
+
+.grid {
+  @extend %clearfix;
+  @extend %centered;
+
+  @include e(col) {
+    width: 100%;
+    @include mq(medium) {
+      @include g-columns;
+      @include m(push) {
+        @include g-columns-push;
+      }
+    }
+
+    @include m(small) {
+      @include mq(small) {
+        @include g-columns;
+        @include m(push) {
+          @include g-columns-push;
+        }
+      }
+    }
+
+    @include m(xs) {
+      @include mq(xs) {
+        @include g-columns;
+        @include m(push) {
+          @include g-columns-push;
+        }
+      }
+    }
+  }
+}
+
+[class^="grid__col--"] {
+  position: relative;
+  margin-bottom: em(12px);
+
+  min-height: 1px;
+  padding-left: $g-col-padding;
+  padding-right: $g-col-padding;
+  &:last-of-type {
+
+  }
+}

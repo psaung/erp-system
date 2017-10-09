@@ -30,7 +30,6 @@ class AdminRoot extends Component {
 
   render() {
     let { auth } = this.props
-    console.log(this.props)
     return (
       <div>
         { this.renderMyComponent(auth.isAuthenticated) }

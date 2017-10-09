@@ -35,7 +35,7 @@ class TimeCard extends Component {
             <div className="panel">
               <h3 className="panel__heading">Time Card</h3>
               <div className="panel__body">
-                { /* <TimeCardList /> */ }
+                <TimeCardList data={ result }/>  
               </div>
             </div>
           }
