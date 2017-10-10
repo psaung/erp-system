@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 class LeaveCalendarItem extends Component { 
   render() {
@@ -16,7 +17,9 @@ class LeaveCalendarItem extends Component {
           <span>N/A</span>
         </div>
         <div className="ta-center">
-          <button className="btn btn--white btn--rounded">View Details</button>
+          <Link to={`/admin/leave/month/${month}`}>
+            <button className="btn btn--white btn--rounded">View Details</button>
+          </Link>
         </div>
       </div>
     )

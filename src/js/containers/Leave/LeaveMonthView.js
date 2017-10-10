@@ -7,6 +7,7 @@ import { fetchResources } from './../../actions/api-actions'
 import {
   Header,
   Loader,
+  LeaveMonthCalendar,
 } from './../../components'
 
 class LeaveMonthView extends Component {
@@ -21,8 +22,6 @@ class LeaveMonthView extends Component {
   render() {
     const { result, isFetching } = this.props.api
     const { params } = this.props.match
-    const firstDay = new Date(2017, params.month - 1, 1)
-    const lastDay = new Date(2017, params.month + 1 - 1 , 0)
     return (
       <div>
         <Helmet>
@@ -36,6 +35,7 @@ class LeaveMonthView extends Component {
             <div className="panel">
               <div className="panel__heading">Leave Calendar</div>
               <div className="panel__body">
+                <LeaveMonthCalendar month={params.month} />
               </div>
             </div>
           }

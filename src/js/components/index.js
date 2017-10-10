@@ -15,6 +15,8 @@ export RoleForm from './Role/RoleForm'
 export LeaveList from './Leave/LeaveList'
 export LeaveCalendar from './Leave/LeaveCalendar'
 export LeaveItem from './Leave/LeaveItem'
+export LeaveMonthCalendar from './Leave/LeaveMonthCalendar'
+export LeaveMonthItem from './Leave/LeaveMonthItem'
 
 export UserList from './User/UserList'
 export UserForm from './User/UserForm'
