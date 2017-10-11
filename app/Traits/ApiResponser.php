@@ -40,7 +40,14 @@ trait ApiResponser
      */
     protected function showAll(Collection $collection, $code = 200)
     {
-        return $this->successResponse(['data' => $collection], $code);
+        if($collection->isEmpty()) {
+            return $this->successReponse(['data' => $collection], $code);
+        }
+        $collection = $this->filterData($collection);
+        $collection = $this->sortData($collection)->values();
+
+        $count = $this->totalCount($collection);
+        return $this->successResponse(['data' => $collection, 'count' => $count], $code);
     }
     
     /*
@@ -59,14 +66,26 @@ trait ApiResponser
      *
      * @return Collection
      */
-    protected function sortData(Collection $collection, $transformer)
+    protected function sortData(Collection $collection)
     {
-        if ($request()->has('sort_by')) {
-            $attributes = $transformer::originalAttribute(request()->sort_by);
-            $collection = $collection->sortyBy->{$attribute};
+        if (request()->has('sort_by')) {
+            $attribute = request()->sort_by;
+            // sortBy output is not array(refrence from https://stackoverflow.com/questions/30717773/laravel-sorted-collection-output-is-not-an-array)
+            // need to rekey after the sort by calling values function
+            $collection = $collection->sortBy($attribute);
         }
 
         return $collection;
+    }
+
+    /*
+     * Get the number of items in a collection 
+     *
+     * @return Number
+     */
+    protected function totalCount(Collection $collection) 
+    {
+        return $collection->count();
     }
 
     /*
@@ -74,13 +93,17 @@ trait ApiResponser
      *
      * @return Collection
      */
-    protected function filterData(Collection $collection, $transformer)
+    protected function filterData(Collection $collection)
     {
+        $getOnlyItem = $collection->first();
         foreach (request()->query() as $query => $value) {
-            $attribute = $transformer::originalAttribute($query);
-
-            if(isset($attribute, $value)) {
-                $collection = $collection->where($attribute, $value);
+            if($getOnlyItem->hasAttribute($query)) {
+                if(strpos($value, ',') !== false) {
+                    $value = explode(',', $value);
+                    $collection = $collection->whereIn($query, $value);
+                } else {
+                    $collection = $collection->where($query, $value);
+                }
             }
         }
 
