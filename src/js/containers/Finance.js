@@ -12,7 +12,12 @@ class Finance extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchResources('payrolls')
+    this.props.fetchResources('payrolls?year=2017')
+  }
+
+  totalSalary(result) {
+    const total = result.reduce((p, v) => (v.bonus + v.salary + v.penalty + v.transportation + v.overtime + v.healthcare), 0)
+    return total
   }
 
   render() {
@@ -30,6 +35,7 @@ class Finance extends Component {
             <div className="panel">
               <h3 className="panel__heading">Finance</h3>
               <div className="panel__body">
+                { this.totalSalary(result) }
               </div>
             </div>
           }

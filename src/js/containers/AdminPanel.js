@@ -8,7 +8,7 @@ import {
   Department,
   Leave,
   LeaveMonth,
-  Role,
+  Task,
   Finance,
   User,
   Setting,
@@ -24,7 +24,7 @@ const AdminPanel = props => ({
           <Route path="/admin/timecard" component={TimeCard} />
           <Route path="/admin/department" component={Department} />
           <Route path="/admin/leave" component={Leave} />
-          <Route path="/admin/role" component={Role} />
+          <Route path="/admin/task" component={Task} />
           <Route path="/admin/finance" component={Finance} />
           <Route path="/admin/user" component={User} />
           <Route path="/admin/setting" component={Setting} />

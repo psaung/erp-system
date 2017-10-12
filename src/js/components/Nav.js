@@ -28,8 +28,8 @@ class Nav extends Component {
           <li className={`nav__item ${location.pathname === "/admin/user" ? "nav__item--active" : ""}`}>
             <Link to='/admin/user'><i className="ion-person" /></Link>
           </li>
-          <li className={`nav__item ${location.pathname === "/admin/role" ? "nav__item--active" : ""}`}>
-            <Link to='/admin/role'><i className="ion-network" /></Link>
+          <li className={`nav__item ${location.pathname === "/admin/task" ? "nav__item--active" : ""}`}>
+            <Link to='/admin/task'><i className="ion-network" /></Link>
           </li>
           <li className={`nav__item ${location.pathname === "/admin/finance" ? "nav__item--active" : ""}`}>
             <Link to='/admin/finance'><i className="ion-ios-pricetags" /></Link>

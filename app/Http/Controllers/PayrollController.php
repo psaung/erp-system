@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Collection;
+use Carbon\Carbon;
 use App\Payroll;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,35 @@ class PayrollController extends ApiController
     public function index()
     {
         $payrolls = Payroll::all();
+        if(request()->has('year')) {
+            $payrolls = $this->getSalaryByYear(request()->year, $payrolls);
+        }
+        if(request()->has('month')) {
+            $payrolls = $this->getSalaryByMonth(request()->month, $payrolls);
+        }
         return $this->showAll($payrolls);
+    }
+
+    private function getSalaryByMonth($month, $payrolls) {
+        $result = [];
+        forEach($payrolls as $key => $value) {
+            $monthItem = Carbon::parse($value->date)->format('m');
+            if($monthItem == $month) {
+                array_unshift($result, $value);
+            }
+        }
+        return collect($result);
+    }
+
+    private function getSalaryByYear($year, $payrolls) {
+        $result = [];
+        forEach($payrolls as $value) {
+            $monthItem = Carbon::parse($value->date)->format('Y');
+            if($monthItem == $year) {
+                array_unshift($result, $value);
+            }
+        }
+        return collect($result);
     }
 
     /**

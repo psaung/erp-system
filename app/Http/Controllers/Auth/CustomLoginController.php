@@ -56,13 +56,13 @@ class CustomLoginController extends Controller
             'client_secret' => env('PASSWORD_CLIENT_SECRET'),
             'grant_type' => 'password',
         ];
-      try {
-              $response = $client->request('POST', '/oauth/token', ['form_params' => $data]);
-              $result = json_decode($response->getBody()->getContents());
-              if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) $user = Auth::user();
-              $result->role = $user ? $user->role : 'employee';
-              return response()->json(['success' => true,
-                'data' => $result], $this->successStatus);
+        try {
+            $response = $client->request('POST', '/oauth/token', ['form_params' => $data]);
+            $result = json_decode($response->getBody()->getContents());
+            if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) $user = Auth::user();
+            $result->role = $user ? $user->role : 'employee';
+            return response()->json(['success' => true,
+                                    'data' => $result], $this->successStatus);
         } catch(ClientErrorResponseException $e) {
             // $result = json_decode($e->getResponse()->getBody()->getContents());
             return response()->json(['success' => false,
