@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Collection;
+use Carbon\Carbon;
 use App\Leavelog;
 use Illuminate\Http\Request;
 
@@ -15,6 +17,32 @@ class LeavelogController extends ApiController
     public function index()
     {
         $leaves = Leavelog::all();
+        if(request()->has('month')) {
+          $attribute = request()->month; 
+          $times = $leaves->pluck('time');
+          $result = [];
+          forEach($times as $key => $value) {
+            $ddd = Carbon::parse($value)->format('m');
+            if($ddd == $attribute) {
+              array_unshift($result, $leaves[$key]);
+            }   
+          } 
+          $leaves = collect($result);
+        } 
+        if(request()->has('daymonth')) {
+          $attribute = request()->daymonth; 
+          $times = $leaves->pluck('time');
+          $result = [];
+          var_dump($attribute);
+          forEach($times as $key => $value) {
+            $ddd = Carbon::parse($value)->format('d-m');
+            var_dump($ddd);
+            if($ddd == $attribute) {
+              array_unshift($result, $leaves[$key]);
+            }   
+          } 
+          $leaves = collect($result);
+        }
         return $this->showAll($leaves);
     }
 

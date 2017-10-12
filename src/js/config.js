@@ -1,9 +1,12 @@
+const serverUrl = 'http://erp-system.dev/'
+/* const serverUrl = 'http://192.168.43.56:8000/'*/
 const config = {
   /*
   host: 'http://localhost:8000/',
   apiHost: 'http://localhost:8000/api/',*/
-  host: 'http://192.168.43.56:8000/',
-  apiHost: 'http://192.168.43.56:8000/api/',
+
+  host: serverUrl,
+  apiHost: serverUrl + 'api/',
 } 
 
 export default config

@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientErrorResponseException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7;
 use Lcobucci\JWT\Parser;
 use Illuminate\Support\Facades\DB;
 
@@ -35,9 +37,9 @@ class CustomLoginController extends Controller
     public function login()
     {
         $client = new Client([
-            'base_uri' => env('BASE_HOST'), 
+          'base_uri' => env('BASE_HOST'), 
         ]);
-        
+
         // you can find password grant type client_id and client_secret
         // in DB::table('oauth_clients')
         // DB::table('oauth_clients')->where('2') 
@@ -54,19 +56,18 @@ class CustomLoginController extends Controller
             'client_secret' => env('PASSWORD_CLIENT_SECRET'),
             'grant_type' => 'password',
         ];
-		
-		try {
-			$response = $client->request('POST', '/oauth/token', ['form_params' => $data]);
-            $result = json_decode($response->getBody()->getContents());
-            if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) $user = Auth::user();
-            $result->role = $user ? $user->role : 'employee'; 
-			return response()->json(['success' => true,
-			'data' => $result], $this->successStatus);
-        } catch(RequestException $e) {
-			$result = json_decode($e->getResponse()->getBody()->getContents());
-			return response()->json(['success' => false,
-			'error' => $result], 401);
-		}	
+      try {
+              $response = $client->request('POST', '/oauth/token', ['form_params' => $data]);
+              $result = json_decode($response->getBody()->getContents());
+              if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) $user = Auth::user();
+              $result->role = $user ? $user->role : 'employee';
+              return response()->json(['success' => true,
+                'data' => $result], $this->successStatus);
+        } catch(ClientErrorResponseException $e) {
+            // $result = json_decode($e->getResponse()->getBody()->getContents());
+            return response()->json(['success' => false,
+            'error' => 'guzzle goes wrong'], 401);
+        }	
     }
 
 	public function refreshToken()
@@ -83,10 +84,11 @@ class CustomLoginController extends Controller
 		]; 
 		
 		try {
-			$response = $client->request('POST', '/oauth/token', ['form_params' => $data]);
+      $response = $client->request('POST', '/oauth/token', ['form_params' => $data]);
+      /*
             $result = json_decode($response->getBody()->getContents());
             return response()->json(['success' => true,
-			'data' => $result], $this->successStatus);
+              'data' => $result], $this->successStatus); */
 		} catch(RequestException $e) {
 			$result = json_decode($e->getResponse()->getBody()->getContents());
 			return response()->json(['success' => false,

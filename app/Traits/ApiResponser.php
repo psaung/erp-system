@@ -41,7 +41,7 @@ trait ApiResponser
     protected function showAll(Collection $collection, $code = 200)
     {
         if($collection->isEmpty()) {
-            return $this->successReponse(['data' => $collection], $code);
+            return $this->successResponse(['data' => $collection, 'count' => 0], $code);
         }
         $collection = $this->filterData($collection);
         $collection = $this->sortData($collection)->values();
