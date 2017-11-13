@@ -6,9 +6,10 @@ class LeaveCalendar extends Component {
   render() {
     const { month, year } = this.props
     const  fullMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    const currentMonth = new Date().getMonth()+1 === month ? true : false
     return (
       <div className="grid__col--3 calendar">
-        <LeaveCalendarItem month={month} year={year} fullMonth={fullMonths[month - 1]}/>
+        <LeaveCalendarItem month={month} year={year} fullMonth={fullMonths[month - 1]} currentMonth={currentMonth}/>
       </div>
     )
   }

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 class LeaveCalendarItem extends Component { 
   render() {
-    const { month, year, fullMonth } = this.props
+    const { month, year, fullMonth, currentMonth } = this.props
     return (
-      <div className="calendar__item ta-center">
+      <div className="calendar__item ta-center" style={{backgroundColor: currentMonth ? '#6dbb70' : '#d0e6fe' }}>
         <h3>{fullMonth}</h3>
         <div className="calendar__ion-group">
           <i className="calendar__ion-icon ion-man" /> x 
@@ -30,6 +30,7 @@ LeaveCalendarItem.propTypes = {
   month: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   fullMonth: PropTypes.string.isRequired,
+  currentMonth: PropTypes.bool.isRequired,
 }
 
 export default LeaveCalendarItem
