@@ -1,0 +1,296 @@
+
+*{
+	padding: 0;
+	margin: 0;
+}
+
+#cal_container{
+	width: 96%;
+	box-shadow: 1px 1px 25px 0px rgba(0,0,0,.3);
+	border-radius: 3px;
+	overflow: hidden;
+	margin: 2%;
+}
+
+.cal{
+	width:100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.cal_header_content{
+	height: 40px;
+}
+
+.header_content{
+
+}
+
+.cursor{
+	cursor:pointer;
+}
+
+.month_width{
+	width:100%;
+}
+
+.month_position{
+	float:left;
+}
+
+.current_month{
+}
+
+.cal_header{
+	width: 100%;
+	height: 40px;
+	background: #eee;
+	font-weight: bold;
+	font-family: Arial;
+	line-height: 2.3em;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.cal_header_month{
+	width:48%;
+	text-align: right;
+	padding-right: 1.5%;
+	cursor: pointer;
+}
+
+.cal_header_month:hover{
+	color:#16678D;
+}
+
+.cal_header_year{
+	width:48%;
+	text-align: left;
+	padding-left: 1.5%;
+	cursor: pointer;
+}
+
+.cal_header_year:hover{
+	color: #16678D;
+}
+
+.cal_content{
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+.cal_day{
+	height: 40px;
+	margin-right: 5px;
+}
+
+.cal_days{
+	width:14.2857142857142857%;
+	text-align: center;		
+	background: #6C9BC7;
+	padding: 10px 0;
+}
+
+.cal_days_position{
+	float: left;
+}
+
+.cal_date{
+
+}
+
+.cal_dates_row{
+	height: 140px;
+}
+
+.cal_dates{
+	width:13.8%;
+	height: 140px;
+	float: left;
+	background:#71A9F0;
+	margin: .2%;
+	overflow: auto;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.selected{
+	background-color: #8BD6FA;
+}
+
+.date_content{
+	width:92%;	
+	text-align: right;
+	line-height: 0;
+	padding:4%;
+	margin-top:8px;
+	font-family: Georgia;
+	font-size: 1.5em;
+	margin-bottom: 17px;
+}
+
+.data_content{
+	width:95%;
+	overflow-y:auto;
+}
+
+.today{
+	color: #fff;
+	font-size: 1.5em;
+}
+
+.next_month_text,.prev_month_text{
+	color:black;
+}
+
+.prev_month_container, .next_month_container{
+	background: #E4EBEE;
+	opacity: .5;
+}
+
+.prev_button{
+	float: left;
+}
+
+.next_button{
+	float:right;
+}
+
+.button_size{
+	width:5%;
+	height: 40px;
+	background-color:  rgb(113, 154, 182);
+	color: #fff;
+	line-height: 2.3em;
+	text-indent: 2%;
+	text-shadow: 2px 2px #272727;
+}
+
+.button_size:hover{
+	color:#eee;
+}
+
+.button_size:active{
+	text-shadow:1px 1px #272727;
+}
+
+.header_content{
+	width:90%;
+	height: 40px;
+	margin:0;
+	float: left;
+	text-align: center;
+}
+
+.header_content_position{
+	float:left;
+	margin: 0;
+}
+
+/* year.................. */
+.year_container{
+	width:100%;
+}
+
+.year_row{
+	width:100%;
+}
+
+.years{
+	width:24.4%;
+	height: 160px;
+	background-color: rgb(143, 192, 213);;
+	float: left;
+	margin: .3%;
+	text-align: center;
+	line-height: 9em;
+	cursor: pointer;
+}
+
+/* month.................. */
+.month_container{
+	width:100%;
+}
+
+.month_row{
+	width:100%;
+}
+
+.months{
+	width:24.4%;
+	height: 160px;
+	background : rgb(143, 192, 213);
+	float: left;
+	margin: .3%;
+	text-align: center;
+	line-height: 9em;
+	cursor: pointer;
+}
+
+.tag{
+	width: 97%;
+	height: 25px;
+	overflow: hidden;
+	margin: 0 auto;
+	text-align: left;
+	font-size: 13px;
+	font-family: Arial;
+	text-indent: 5px;
+	line-height: 1.7em;
+	margin-top: 10px;
+	color:#fff;
+	/* border:1px solid #0A4B88; */
+}
+
+.leave{
+	background-color: #F06767;
+}
+
+.morning_leave{
+	background-image: linear-gradient(to right,#F06767 50%, transparent 50%);
+}
+
+.evening_leave{
+	background-image: linear-gradient(to right, transparent 50%, #F06767 50%);
+}
+
+.cal_dates::-webkit-scrollbar,.overlay_content::-webkit-scrollbar {
+	width: 5px;
+}
+
+/* Track */
+.cal_dates::-webkit-scrollbar-track,.overlay_content::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(2, 39, 87, 0.3);
+	-webkit-border-radius: 10px;
+	border-radius: 3px;
+}
+
+/* Handle */
+.cal_dates::-webkit-scrollbar-thumb,.overlay_content::-webkit-scrollbar-thumb {
+	border-radius: 3px;
+	background: rgb(255, 255, 255);
+	-webkit-box-shadow: inset 0 0 6px rgba(138, 138, 138, 0.5);
+}
+
+.overlay{
+	background: rgba(0,0,0,.1);
+	width:100%;
+	height: 100%;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: 99;
+	/* display: none; */
+}
+
+.overlay_content{
+	background:#fff;
+	width:350px;
+	height: 300px;
+	border-radius: 4px;
+	margin:0 auto;
+	background: #71A9F0;
+	overflow: auto;
+	cursor: pointer;
+	border:5px solid #fff;
+	z-index: 9999;
+}

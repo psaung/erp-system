@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/calendar_style.css">
+	
+</head>
+<body>
+	<div id="cal_container"></div>
+	<input type="button" value="getDate">
+</body>
+<script src="scripts/jquery-2.0.2.min.js"></script>
+<script src="scripts/calendar_script.js"></script>
+<script>
+	$('#cal_container').create_table({
+		day : "short",
+		date : new Date(2017,3)
+	});
+</script>
+</html>
