@@ -22,6 +22,7 @@ class LeaveMonthView extends Component {
   render() {
     const { result, isFetching } = this.props.api
     const { params } = this.props.match
+
     return (
       <div>
         <Helmet>

@@ -21,8 +21,9 @@ class Leave extends Component {
 
   render() {
     const { result, isFetching } = this.props.api
-    const mockArr = Array.from(Array(12).keys()).map(x => x + 1);
+    const mockArr = Array.from(Array(12).keys()).map(x => x + 1)
     const year = new Date().getFullYear()
+    
     return (
       <div>
         <Helmet>

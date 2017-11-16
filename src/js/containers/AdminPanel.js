@@ -10,6 +10,7 @@ import {
   LeaveMonth,
   Task,
   Finance,
+  FinanceDetail,
   User,
   Setting,
 } from './index'
@@ -25,7 +26,8 @@ const AdminPanel = props => ({
           <Route path="/admin/department" component={Department} />
           <Route path="/admin/leave" component={Leave} />
           <Route path="/admin/task" component={Task} />
-          <Route path="/admin/finance" component={Finance} />
+          <Route exact path="/admin/finance" component={Finance} />
+          <Route path="/admin/finance/:financeId" component={FinanceDetail} />
           <Route path="/admin/user" component={User} />
           <Route path="/admin/setting" component={Setting} />
 

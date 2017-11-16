@@ -16,7 +16,8 @@ class PayrollController extends ApiController
      */
     public function index()
     {
-        $payrolls = Payroll::all();
+        $payrolls = Payroll::with('user')->get();
+        //$payrolls = Payroll::all();
         if(request()->has('year')) {
             $payrolls = $this->getSalaryByYear(request()->year, $payrolls);
         }

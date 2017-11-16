@@ -33,3 +33,18 @@ function callApi(endpoint, conf = {}) {
 }
 
 export const fetchAll = params => callApi(params)
+ 
+export const saveApiResource = params => callApi(params.url , {
+  method: "POST",
+  body: JSON.stringify(params.data)
+})
+
+export const deleteApiResource = params => callApi(params.url, {
+  method: "DELETE",
+  body: JSON.stringify(params.data)
+})
+
+export const updateApiResource = params => callApi(params.url, {
+  method: "PUT",
+  body: JSON.stringify(params.data)
+})

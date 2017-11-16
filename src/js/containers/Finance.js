@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
 import { fetchResources } from './../actions/api-actions'
-import { Header, Loader } from './../components'
+import { Header, Loader, FinanceList } from './../components'
 
 class Finance extends Component {
   constructor() {
@@ -35,7 +35,7 @@ class Finance extends Component {
             <div className="panel">
               <h3 className="panel__heading">Finance</h3>
               <div className="panel__body">
-                { this.totalSalary(result) }
+                <FinanceList finances={result} />
               </div>
             </div>
           }
