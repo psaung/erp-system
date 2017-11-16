@@ -7,7 +7,7 @@ import fetch from 'isomorphic-fetch'
 import * as apiActions from '../actions/api-actions'
 import { showLogMsg, hideMsg } from './../actions/app-actions'
 
-import { fetchAll } from './../services/api'
+import { fetchAll, saveApiResource, updateApiResource, deleteApiResource } from './../services/api'
 
 import config from './../config'
 
@@ -37,5 +37,61 @@ export function* fetchAllResources() {
       yield put(apiActions.responseSuccess(response))
     }
     // some sort of api fetching
+  }
+}
+
+export function* saveResource(data) {
+  try {
+    const result = yield call(saveApiResource, { url : data.url, data: data.data })
+    if(result.error) {
+      yield put(apiActions.responseFail(response.error))
+      yield put(showLogMsg(response.error))
+      yield call(delay, 3000)
+      yield put(hideMsg())
+    } else {
+      yield put(apiActions.responseSuccess(response))
+    }
+  } catch(e) {
+    yield put(apiActions.responseFail(e.error.message))
+    yield put(showLogMsg(e.error.message))
+    yield call(delay, 3000)
+    yield put(hideMsg())
+  }
+}
+
+export function* deleteResource(data) {
+  try {
+    const result = yield call(deleteApiResource, { url : data.url, data: data.data })
+    if(result.error) {
+      yield put(apiActions.responseFail(response.error))
+      yield put(showLogMsg(response.error))
+      yield call(delay, 3000)
+      yield put(hideMsg())
+    } else {
+      yield put(apiActions.responseSuccess(response))
+    }
+  } catch(e) {
+    yield put(apiActions.responseFail(e.error.message))
+    yield put(showLogMsg(e.error.message))
+    yield call(delay, 3000)
+    yield put(hideMsg())
+  }
+}
+export function* updateResource(data) {
+  try {
+    const result = yield call(updateApiResource, { url : data.url, data: data.data })
+    if(result.error) {
+      yield put(apiActions.responseFail(response.error))
+      yield put(showLogMsg(response.error))
+      yield call(delay, 3000)
+      yield put(hideMsg())
+    } else {
+      yield put(apiActions.responseSuccess(response))
+    }
+  } catch(e) {
+    yield put(apiActions.responseFail(e.error.message))
+    yield put(showLogMsg(e.error.message))
+    yield call(delay, 3000)
+    yield put(hideMsg())
   }
 }

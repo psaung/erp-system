@@ -38,6 +38,18 @@ export default function reducer(state = initialState, action = {}) {
         isFetching: false,
         error: action.error
       }
+    case API_PUT_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        params: action.params || {}
+      }
+    case API_DELETE_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        params: action.params || {}
+      }
     case FLUSH_API_DATA:
       return initialState 
     default: 

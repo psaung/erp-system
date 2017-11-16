@@ -21,3 +21,4 @@ export LeaveMonthItem from './Leave/LeaveMonthItem'
 export UserList from './User/UserList'
 export UserForm from './User/UserForm'
 
+export FinanceList from './Finance/FinanceList'

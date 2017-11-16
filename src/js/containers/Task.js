@@ -36,7 +36,7 @@ class Task extends Component {
               <div className="panel">
                 <h3 className="panel__heading">Task</h3>
                 <div className="panel__body">
-                  <TaskList tasks={[]}/>
+                  <TaskList tasks={result}/>
                 </div>
               </div>
               <TaskForm />

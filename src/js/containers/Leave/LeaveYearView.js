@@ -23,6 +23,23 @@ class LeaveYearView extends Component {
     const { result, isFetching } = this.props.api
     const mockArr = Array.from(Array(12).keys()).map(x => x + 1);
     const year = new Date().getFullYear()
+    let dateArray = []
+    let dateObj = {}
+    console.log(result)
+    if(result.length > 0) {
+      dateArray = result.map(v => {
+        const dat = new Date(v.time).getMonth() + 1
+        dateObj[dat] = dateObj[dat] ? dateObj[dat] : {};
+        if(v.period === "half day") {
+          dateObj[dat].half = dateObj[dat].half ? dateObj[dat].half + 1 : 1 
+        } else {
+          dateObj[dat].full = dateObj[dat].full ? dateObj[dat].full + 1 : 1 
+        }
+        return dat 
+      })
+      console.log(dateObj)
+    }
+
     return (
       <div>
         <Helmet>
