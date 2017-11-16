@@ -15,6 +15,13 @@ class LeaveMonthCalendar extends Component {
                       .filter(dd => (dd.getDay() !== 0 && dd.getDay() !== 6))  
     return(
       <div>
+        <ul className="">
+          <li>Monday</li>
+          <li>Tuesday</li>
+          <li>Wednesday</li>
+          <li>Thursday</li>
+          <li>Friday</li>
+        </ul>
         <ul>
           { dateArr.map( x => 
             <LeaveMonthItem date={x} key={`day ${x.getDate()}`}/>

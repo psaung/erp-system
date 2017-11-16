@@ -55,7 +55,7 @@ class LeaveYearView extends Component {
               <div className="panel__body">
                 <h3 className="ta-center">{year}</h3>
                 <div className="grid">
-                  { mockArr.map( v => <LeaveCalendar month={v} year={year} key={`yearmonth${v}`}/> ) }
+                  { mockArr.map( v => <LeaveCalendar month={v} year={year} key={`yearmonth${v}`} half={(dateObj[v] && dateObj[v].half) ? dateObj[v].half : 'N/A'} full={(dateObj[v] && dateObj[v].full) ? dateObj[v].full : 'N/A'}/> ) }
                 </div>
               </div>
             </div>

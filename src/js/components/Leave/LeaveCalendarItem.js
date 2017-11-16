@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom'
 
 class LeaveCalendarItem extends Component { 
   render() {
-    const { month, year, fullMonth, currentMonth } = this.props
+    const { half, full, month, year, fullMonth, currentMonth } = this.props
     return (
       <div className="calendar__item ta-center" style={{backgroundColor: currentMonth ? '#6dbb70' : '#d0e6fe' }}>
         <h3>{fullMonth}</h3>
         <div className="calendar__ion-group">
           <i className="calendar__ion-icon ion-man" /> x 
-          <span>N/A</span>
+          <span>{half}</span>
         </div>
         <div className="calendar__ion-group">
           <i className="calendar__ion-icon ion-woman" /> x 
-          <span>N/A</span>
+          <span>{full}</span>
         </div>
         <div className="ta-center">
           <Link to={`/admin/leave/month/${month}`}>
