@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Collection;
+use Carbon\Carbon;
 use App\Leave;
 use Illuminate\Http\Request;
 
@@ -17,6 +19,17 @@ class LeaveController extends ApiController
         //
         $leaves = Leave::all();
         return $this->showAll($leaves);
+    }
+
+    public function getLeaveByMonth($month, $leave) {
+      $result = [];
+      forEach($leave as $key => $value) {
+        $monthItem = Carbon::parase($value->date)->format('m');
+        if($monthItem === $month) {
+          array_unshift($result, $value);
+        } 
+      }
+      return collect($result);
     }
 
     /**

@@ -7,6 +7,8 @@ use App\Timeframe;
 use App\Payroll;
 use App\Salary;
 use App\Task;
+use App\Leave;
+use App\LeaveLog;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -122,6 +124,16 @@ class User extends Authenticatable
     public function salaries()
     {
         return $this->hasMany(Salary::class);
+    }
+
+    public function leavelogs()
+    {
+      return $this->hasMany(LeaveLog::class);
+    }
+
+    public function leave()
+    {
+      return $this->hasOne(Leave::class);
     }
 
     public function payrolls()

@@ -15,7 +15,7 @@ class UserController extends ApiController
     public function index()
     {
         // fetch all of the users in database except admin user 
-        $users = User::where('role', '!=', 'admin')->orderBy('id')->with('departments:id,name')->get(); 
+        $users = User::where('role', '!=', 'admin')->orderBy('id')->with(['leavelogs', 'departments:id,name', 'leave', 'payrolls', 'salaries', 'tasks'])->get(); 
         // return response()->json(['data' => $users]);
         return $this->showAll($users);
     }

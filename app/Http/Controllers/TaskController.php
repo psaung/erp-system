@@ -14,7 +14,7 @@ class TaskController extends ApiController
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::with('user')->get();
         return $this->showAll($tasks);
     }
 
