@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class UserList extends Component {
@@ -15,6 +16,9 @@ class UserList extends Component {
               <th>Email</th>
               <th>Role</th>
               <th>Department</th>
+              <th>Causal</th>
+              <th>Medical</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -26,6 +30,9 @@ class UserList extends Component {
               <td>{user.role}</td>
               <td>{user.departments[0] &&
               user.departments[0].name}</td>
+              <td>{user.leave.paid}</td>
+              <td>{user.leave.medical}</td>
+              <td><Link to={"/admin/user/"+user.id}>Detail</Link></td>
             </tr>
             )}
           </tbody>

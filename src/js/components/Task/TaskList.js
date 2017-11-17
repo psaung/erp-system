@@ -29,7 +29,7 @@ class TaskList extends Component {
                 <td>{id+1}</td>
                 <td>{task.name}</td>
                 <td>{task.description.substr(0, 10)}</td>
-                <td>{task.user_id}</td>
+                <td>{task.user.name}</td>
                 <td>{task.start_date}</td>
                 <td>{task.end_date}</td>
                 <td>{task.percentage}</td>

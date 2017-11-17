@@ -6,8 +6,7 @@ import { connect } from 'react-redux'
 import { fetchResources, loadUser } from './../actions/api-actions'
 import {
   Header,
-  UserForm,
-  UserList,
+  UserDetail,
   Loader,
 } from './../components'
 
@@ -17,7 +16,8 @@ class User extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchResources('users')
+    const { userId } = this.props.match.params
+    this.props.fetchResources('users?id='+userId)
   }
 
   render() {
@@ -29,9 +29,9 @@ class User extends Component {
     return (
       <div>
         <Helmet>
-          <title>User</title>
+          <title>User Detail</title>
         </Helmet>
-        <Header heading="User" />
+        <Header heading="User Detail" />
         <main className="l-main">
           { isFetching ? 
           <div style={{width: '100%', minHeight: '300px'}}>
@@ -42,12 +42,9 @@ class User extends Component {
             <div className="panel">
               <h3 className="panel__heading">User</h3>
               <div className="panel__body">
-                { result.length > 0 &&
-                  <UserList users={result} />
-                }
+                <UserDetail user={result[0]} />
               </div>
             </div>
-            <UserForm />
           </div>
           }
         </main>
