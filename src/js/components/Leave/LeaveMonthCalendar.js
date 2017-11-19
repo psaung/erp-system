@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import uuidv4 from 'uuid/v4'
 import PropTypes from 'prop-types'
 
 import LeaveMonthItem from './LeaveMonthItem'
@@ -9,7 +10,7 @@ class LeaveMonthCalendar extends Component {
     const leaveMonth = {};
     if(leaves.length>0) {
       leaves.map( v => {
-        const dayy = new Date(v.time).getDay();
+        const dayy = new Date(v.time).getDate();
           leaveMonth[dayy] = leaveMonth[dayy] || {};
         if(v.period === "full day") {
           leaveMonth[dayy].full= leaveMonth[dayy].full? leaveMonth[dayy].full+ 1 : 1;
@@ -55,9 +56,12 @@ class LeaveMonthCalendar extends Component {
         <tbody>
             { mockArrRows.map( v => 
                 <tr>
-                 { v.map( x =>
-                    <LeaveMonthItem date={x} key={`day ${ x !== " " ?  x.getDate() : Math.random()}`} half={ leaveMonth[x.getDate()] ? leaveMonth[x.getDate()].half : 0 } full={ leaveMonth[x.getDate()] ? leaveMonth[x.getDate()].full : 0} />
-                  )}
+                 { v.map( x => {
+                    const date = x !== " " ? x.getDate() : null
+                    const getHalfLeave = date !== null ? ( leaveMonth[date] ? leaveMonth[date].half : 0) : 0
+                    const getFullLeave = date !== null ? ( leaveMonth[date] ? leaveMonth[date].full : 0) : 0
+                    return (<LeaveMonthItem date={x} key={`day ${uuidv4()}`} half={ getHalfLeave } full={ getFullLeave } />
+                    )})}
                 </tr>
             )}
         </tbody>

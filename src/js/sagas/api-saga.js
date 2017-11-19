@@ -40,6 +40,26 @@ export function* fetchAllResources() {
   }
 }
 
+// url must be object and handling only get request
+export function* fetchMultipleResources() {
+  while(true) {
+    const { params } = yield take('API_GET_REQUEST_MULTIPLE')
+    console.log(params);
+    let result = {} 
+    for(let v in params) {
+      result[v] = yield call(fetchAll, params[v]);
+      if(result[v].error) {
+        yield put(apiActions.responseFail(response.error))
+        yield put(showLogMsg(response.error))
+        yield call(delay, 3000)
+        yield put(hideMsg())
+        return;
+      }
+    }
+    yield put(apiActions.responseSuccess(result))
+  } 
+}
+
 export function* saveResource(data) {
   try {
     const result = yield call(saveApiResource, { url : data.url, data: data.data })

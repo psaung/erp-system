@@ -25,7 +25,7 @@ const AdminPanel = props => ({
           <Route exact path="/admin/" component={Dashboard} />
           <Route path="/admin/timecard" component={TimeCard} />
           <Route path="/admin/department" component={Department} />
-          <Route exact path="/admin/leave" component={Leave} />
+          <Route path="/admin/leave" component={Leave} />
           <Route path="/admin/task" component={Task} />
           <Route exact path="/admin/finance" component={Finance} />
           <Route path="/admin/finance/:financeId" component={FinanceDetail} />

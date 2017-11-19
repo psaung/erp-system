@@ -1,5 +1,6 @@
 import {
   API_GET_REQUEST,
+  API_GET_REQUEST_MULTIPLE,
   API_RESPONSE_SUCCESS,
   API_REQUEST_ERROR,
   API_REQUEST_FAILURE,
@@ -52,6 +53,7 @@ export function flushData() {
 }
 
 export const fetchResources = params => action(API_GET_REQUEST, {params})
+export const fetchResourcesMultiple = params => action(API_GET_REQUEST_MULTIPLE, { params })
 
 export const loadDepartment= b => action(LOAD_DEPARTMENT, {b})
 export const loadUser= b => action(LOAD_USER, {b})

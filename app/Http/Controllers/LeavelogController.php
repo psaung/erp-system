@@ -16,7 +16,8 @@ class LeavelogController extends ApiController
      */
     public function index()
     {
-        $leaves = Leavelog::all();
+        // $leaves = Leavelog::all();
+        $leaves = Leavelog::with('user')->get();
         if(request()->has('month')) {
           $attribute = request()->month; 
           $times = $leaves->pluck('time');
@@ -33,10 +34,8 @@ class LeavelogController extends ApiController
           $attribute = request()->daymonth; 
           $times = $leaves->pluck('time');
           $result = [];
-          var_dump($attribute);
           forEach($times as $key => $value) {
             $ddd = Carbon::parse($value)->format('d-m');
-            var_dump($ddd);
             if($ddd == $attribute) {
               array_unshift($result, $leaves[$key]);
             }   

@@ -2,7 +2,7 @@ import { take, put, call, fork, select, takeEvery, takeLatest, all } from 'redux
 import { delay } from 'redux-saga'
 
 import { api } from './../services'
-import { fetchData, fetchAllResources } from './api-saga'
+import { fetchData, fetchAllResources, fetchMultipleResources } from './api-saga'
 
 import {
   LOGIN_REQUEST,
@@ -80,7 +80,8 @@ export default function* root() {
   yield all([
     // fork(getDepartments),
     // fork(watchLoadUserPage)
-    fork(fetchAllResources)
+    fork(fetchAllResources),
+    fork(fetchMultipleResources)
   ])
   yield takeEvery(LOGIN_REQUEST, loginUser)
   yield takeLatest(AUTHORIZATION_REQUEST, checkAuthToken)

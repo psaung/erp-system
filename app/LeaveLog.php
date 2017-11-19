@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Leavelog extends Model
@@ -41,5 +42,10 @@ class Leavelog extends Model
         }
         
         return isset($attributes[$idx]) ? true : false;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

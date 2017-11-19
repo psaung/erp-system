@@ -2,6 +2,7 @@ import { merge } from 'lodash'
 
 import { 
   API_GET_REQUEST,
+  API_GET_REQUEST_MULTIPLE,
   API_PUT_REQUEST,
   API_POST_REQUEST,
   API_DELETE_REQUEST,
@@ -27,6 +28,13 @@ export default function reducer(state = initialState, action = {}) {
         result: action.result.data || [],
       }
     case API_GET_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        params: action.params || {}
+      }
+    case API_GET_REQUEST_MULTIPLE:
+      console.log(action)
       return {
         ...state,
         isFetching: true,
