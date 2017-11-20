@@ -48,10 +48,10 @@ class LeaveDateView extends Component {
               <div className="panel__body">
                 <h3>{params.date}/{params.month}/{year}</h3>
                 <div className="grid">
-                  { result.leaveLogs && result.leaveLogs.data &&
-                    <div>
-                      { result.leavelogs.data.user.name } took { result.leavelogs.data.user.period }
-                    </div>
+                  { result.leaveLogs && result.leaveLogs.length > 0 &&
+                    result.leaveLogs.map( v => <div key={v.id+'user'}>
+                      {v.user.name} took {v.period}. 
+                    </div>)
                   }
                 </div>
               </div>

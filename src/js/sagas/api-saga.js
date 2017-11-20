@@ -47,7 +47,7 @@ export function* fetchMultipleResources() {
     console.log(params);
     let result = {} 
     for(let v in params) {
-      result[v] = yield call(fetchAll, params[v]);
+      result[v] = yield call(fetchAll, params[v])
       if(result[v].error) {
         yield put(apiActions.responseFail(response.error))
         yield put(showLogMsg(response.error))
@@ -55,8 +55,9 @@ export function* fetchMultipleResources() {
         yield put(hideMsg())
         return;
       }
+      result[v] = result[v].data
     }
-    yield put(apiActions.responseSuccess(result))
+    yield put(apiActions.responseSuccess({ data: result }))
   } 
 }
 

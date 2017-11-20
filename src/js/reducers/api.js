@@ -22,6 +22,7 @@ const initialState =  {
 export default function reducer(state = initialState, action = {}) {
   switch(action.type) {
     case API_RESPONSE_SUCCESS:
+      console.log(action.result)
       return {
         ...state,
         isFetching: false,

@@ -9,9 +9,12 @@ class LeaveMonthItem extends Component {
     const  fullMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const { date } = this.props
     const month = new Date(date).getMonth() + 1;
+    const today = new Date()
+    console.log(today.getMonth(), today.getDate())
+    const checkToday = today.getMonth() + 1 === month  && date.getDate() === today.getDate() ? true : false
     const day = date !== " "?  weekDayArr[date.getDay()]: " "
     return(
-      <td style={{ textAlign: 'center' }}>
+      <td style={{ textAlign: 'center', backgroundColor: checkToday ? '#6dbb70' : 'none' }}>
         { date !== " " ? 
           <span style={{ cursor: 'pointer' }}>
               <Link to={`/admin/leave/month/${month}/date/${date.getDate()}`}>
